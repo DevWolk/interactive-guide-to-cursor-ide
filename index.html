@@ -24,6 +24,7 @@
             border-radius: 0.375rem;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
             color: #475569; /* text-slate-600 */
+            font-size: 0.9rem;
         }
         .nav-link:hover {
             background-color: #e2e8f0; /* bg-slate-200 */
@@ -36,6 +37,13 @@
         }
         .nav-link.active:hover {
             background-color: #0284c7; /* bg-sky-600 */
+        }
+        h1.main-title {
+             font-size: 1.5rem; /* text-2xl */
+             font-weight: 700; /* font-bold */
+             color: #0369a1; /* text-sky-700 */
+             margin-bottom: 1.5rem; /* mb-6 */
+             text-align: center;
         }
         h2 {
             font-size: 1.875rem; /* text-3xl */
@@ -59,6 +67,13 @@
             margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
+         h5 {
+            font-size: 1.1rem; /* text-lg */
+            font-weight: 600;
+            color: #334155; /* text-slate-700 */
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
         p, li {
             line-height: 1.75;
             margin-bottom: 0.75rem;
@@ -74,7 +89,11 @@
             position: relative;
         }
         code {
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre code {
+            font-size: 0.85em;
         }
         .copy-btn {
             position: absolute;
@@ -95,6 +114,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
         th, td {
             border: 1px solid #cbd5e1; /* border-slate-300 */
@@ -110,7 +130,7 @@
             background-color: #f1f5f9; /* bg-slate-100 */
             padding: 0.75rem;
             border-radius: 0.375rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.1rem; /* Reduced margin */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -125,44 +145,10 @@
             border: 1px solid #e2e8f0; /* border-slate-200 */
             border-top: none;
             border-radius: 0 0 0.375rem 0.375rem;
+            margin-bottom: 0.5rem; /* Added margin to separate from next header */
         }
         .collapsible-content.open {
             display: block;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 220px;
-            background-color: #334155; /* bg-slate-700 */
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -110px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #334155 transparent transparent transparent;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
         }
         .alert-info {
             background-color: #e0f2fe; /* sky-100 */
@@ -179,6 +165,14 @@
             padding: 1rem;
             margin-bottom: 1rem;
             color: #713f12; /* yellow-800 */
+        }
+        .alert-danger {
+            background-color: #fee2e2; /* red-100 */
+            border-left-width: 4px;
+            border-color: #ef4444; /* red-500 */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            color: #991b1b; /* red-800 */
         }
         .tag {
             display: inline-block;
@@ -235,166 +229,336 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* Custom scrollbar for nav */
+        nav::-webkit-scrollbar {
+            width: 8px;
+        }
+        nav::-webkit-scrollbar-track {
+            background: #f1f5f9; /* bg-slate-100 */
+            border-radius: 10px;
+        }
+        nav::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* bg-slate-300 */
+            border-radius: 10px;
+        }
+        nav::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* bg-slate-400 */
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-700">
 
     <div class="flex flex-col md:flex-row min-h-screen">
-        <nav class="md:w-64 bg-white shadow-lg p-4 space-y-2 md:sticky md:top-0 md:h-screen overflow-y-auto">
-            <h1 class="text-2xl font-bold text-sky-600 mb-6 text-center">Cursor IDE Гайд</h1>
+        <nav class="md:w-72 bg-white shadow-lg p-4 space-y-1 md:sticky md:top-0 md:h-screen overflow-y-auto">
+            <h1 class="main-title">Cursor IDE: PHP/Laravel Гайд</h1>
             <a class="nav-link block" data-target="introduction">Введение</a>
-            <a class="nav-link block" data-target="setup">1. Настройка среды</a>
-            <a class="nav-link block" data-target="rules">2. Освоение Cursor Rules</a>
-            <a class="nav-link block" data-target="context">3. Использование контекста (`@`)</a>
-            <a class="nav-link block" data-target="mcp">4. MCP Серверы</a>
+            <a class="nav-link block" data-target="installation">1. Установка и Настройка</a>
+            <a class="nav-link block" data-target="project-config">2. Конфигурация Проекта</a>
+            <a class="nav-link block" data-target="rules">3. Освоение Cursor Rules</a>
+            <a class="nav-link block" data-target="context-at">4. Использование Контекста (@)</a>
             <a class="nav-link block" data-target="ai-dev">5. Разработка с AI</a>
-            <a class="nav-link block" data-target="workflow">6. Улучшение рабочего процесса</a>
-            <a class="nav-link block" data-target="conclusion">7. Заключение</a>
+            <a class="nav-link block" data-target="mcp-servers">6. MCP Серверы</a>
+            <a class="nav-link block" data-target="debugging">7. Отладка (Xdebug)</a>
+            <a class="nav-link block" data-target="laravel-ecosystem">8. Экосистема Laravel</a>
+            <a class="nav-link block" data-target="tips-tricks">9. Советы и Трюки</a>
+            <a class="nav-link block" data-target="conclusion">10. Заключение</a>
         </nav>
 
         <main class="flex-1 p-6 md:p-10 overflow-y-auto">
             <section id="introduction" class="content-section">
-                <h2>Введение</h2>
-                <p>Добро пожаловать в интерактивное руководство по Cursor IDE для PHP и Laravel! Это приложение создано на основе подробного гайда и предназначено для того, чтобы помочь вам быстро освоить все тонкости использования Cursor IDE в вашей повседневной разработке.</p>
-                <p>Cursor IDE, основанная на VS Code, предлагает мощную интеграцию с искусственным интеллектом, что может значительно повысить вашу производительность. Здесь вы найдете информацию о настройке среды, работе с AI-ассистентом, управлении контекстом проекта, использовании правил и многом другом. Мы рассмотрим как базовые, так и продвинутые техники, которые позволят вам "взлететь" и начать пользоваться всеми преимуществами Cursor.</p>
-                <p>Используйте навигацию слева, чтобы перемещаться по разделам руководства. Каждый раздел содержит ключевую информацию, примеры кода и практические советы. В некоторые разделы добавлены ✨ AI-помощники на базе Gemini API для генерации правил и промптов.</p>
+                <h2>Введение в Cursor для PHP/Laravel разработчиков</h2>
+                <p>Добро пожаловать в обновленное и дополненное интерактивное руководство по Cursor IDE для PHP и Laravel! Это приложение создано, чтобы помочь вам быстро освоить все тонкости использования Cursor IDE, превратив его в вашего незаменимого AI-ассистента в повседневной разработке.</p>
+                <p>Cursor IDE, построенный на основе VS Code, предлагает глубокую интеграцию с искусственным интеллектом, что может кардинально повысить вашу продуктивность. Здесь вы найдете исчерпывающую информацию: от первоначальной установки и настройки среды PHP/Laravel до продвинутых техник работы с AI, управления контекстом проекта, использования правил (`.cursor/rules`), интеграции с MCP-серверами (включая инновационный OpenMemory MCP), отладки с Xdebug и эффективного взаимодействия с экосистемой Laravel (Composer, Artisan, Sail/Herd).</p>
+                <p>Мы рассмотрим как базовые, так и продвинутые техники, которые позволят вам "взлететь" и начать пользоваться всеми преимуществами Cursor. Используйте навигацию слева, чтобы перемещаться по разделам. Каждый раздел содержит ключевую информацию, примеры кода, практические советы и ✨ AI-помощников на базе Gemini API для генерации правил и промптов.</p>
+                <h4>Почему Cursor для разработки на РНР и Laravel?</h4>
+                <p>Cursor предлагает ускорение циклов разработки, улучшение качества кода за счет интеллектуальных предложений и автоматизированного рефакторинга, а также помощь в освоении и реализации сложных функций Laravel. Хотя начальное освоение может потребовать времени, долгосрочный выигрыш в производительности часто оказывается значительным. Важно понимать, что Cursor — это интеллектуальный ассистент, расширяющий ваши возможности, а не полная замена разработчика.</p>
+                <h4>Cursor в сравнении с традиционными IDE (например, PhpStorm)</h4>
+                <p>PhpStorm славится мощной встроенной поддержкой PHP/Laravel. Cursor выделяется передовыми AI-функциями, но его базовая IDE-функциональность для PHP/Laravel зависит от расширений VS Code. Максимальная эффективность Cursor достигается за счет синергии его AI-возможностей и богатой экосистемы расширений.</p>
             </section>
 
-            <section id="setup" class="content-section">
-                <h2>1. Начало работы и настройка среды</h2>
-                <p>Этот раздел поможет вам установить и настроить Cursor IDE для эффективной работы с PHP и Laravel проектами. Переход с VS Code будет простым благодаря общей основе. Cursor доступен для macOS и Windows, а поддержка Linux ожидается в 2025 году. Предоставляется 14-дневная пробная версия плана Pro.</p>
+            <section id="installation" class="content-section">
+                <h2>1. Установка и Первоначальная Настройка Среды</h2>
+                <p>Этот раздел поможет вам установить и настроить Cursor IDE для эффективной работы с PHP и Laravel проектами. Cursor доступен для macOS, Windows и Linux.</p>
 
-                <h3>1.1. Установка и первоначальная конфигурация</h3>
-                <p>Установите Cursor с официального сайта. При первом запуске можно импортировать настройки и расширения из VS Code.</p>
-
-                <div class="collapsible-header">
-                    <span>1.1.1. Настройка интерпретатора PHP</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="collapsible-content">
-                    <p>Если Cursor не находит PHP, вы увидите ошибку "Cannot validate since a PHP installation could not be found".</p>
-                    <p><strong>Решение:</strong></p>
-                    <ol class="list-decimal list-inside ml-4">
-                        <li>Откройте настройки Cursor (<code>Ctrl/⌘ + ,</code>).</li>
-                        <li>Найдите <code>php.validate.executablePath</code>.</li>
-                        <li>Укажите полный путь к вашему <code>php.exe</code> (например, <code>C:\xampp\php\php.exe</code> или <code>/usr/bin/php</code>).</li>
-                    </ol>
-                </div>
-
-                <div class="collapsible-header">
-                    <span>1.1.2. Настройка Xdebug для отладки</span>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="collapsible-content">
-                    <p>Xdebug необходим для отладки PHP кода.</p>
-                    <h4>Установка Xdebug:</h4>
-                    <ul class="list-disc list-inside ml-4">
-                        <li><strong>Windows:</strong> Используйте Xdebug Wizard для загрузки <code>.dll</code> файла.</li>
-                        <li><strong>macOS/Linux:</strong> Через PECL (<code>pecl install xdebug</code>) или менеджеры пакетов (<code>sudo apt install php-xdebug</code>).</li>
-                    </ul>
-                    <p>Активируйте Xdebug в <code>php.ini</code>: <code>zend_extension=xdebug</code> (путь может отличаться).</p>
-                    <h4>Конфигурация Xdebug в <code>php.ini</code> (для Xdebug 3):</h4>
-                    <pre><code class="language-ini">xdebug.mode=debug
-xdebug.start_with_request=yes
-xdebug.client_host=127.0.0.1
-xdebug.client_port=9003</code><button class="copy-btn">Копировать</button></pre>
-                    <p>Не забудьте перезапустить веб-сервер.</p>
-                    <h4>Настройка <code>launch.json</code> в Cursor:</h4>
-                    <ol class="list-decimal list-inside ml-4">
-                        <li>Установите расширение "PHP Debug" от Felix Becker.</li>
-                        <li>В панели "Run and Debug" (<code>Ctrl/⌘ + Shift + D</code>), создайте <code>launch.json</code> для PHP.</li>
-                        <li>Базовая конфигурация "Listen for Xdebug":</li>
-                    </ol>
-                    <pre><code class="language-json">{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Listen for Xdebug",
-            "type": "php",
-            "request": "launch",
-            "port": 9003
-        }
-    ]
-}</code><button class="copy-btn">Копировать</button></pre>
-                    <p>После этого можно устанавливать точки останова и запускать отладку (F5).</p>
-                </div>
-
-                <h3>1.2. Рекомендуемые расширения VS Code для PHP/Laravel</h3>
-                <p>Cursor совместим с расширениями VS Code. Вот некоторые рекомендуемые:</p>
-                <ul class="list-disc list-inside ml-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <li><strong>PHP Intelephense</strong> (Ben Mewburn): Автодополнение, диагностика.</li>
-                    <li><strong>PHP Debug</strong> (Felix Becker): Для Xdebug.</li>
-                    <li><strong>PHP DocBlocker</strong> (Neil Brayfield): Генерация PHPDoc.</li>
-                    <li><strong>Laravel Extension Pack</strong> (Winnie Lin) или аналоги: Поддержка Blade, маршрутов и т.д.</li>
-                    <li><strong>PHP CS Fixer</strong> (junstyle) / <strong>PHP Sniffer & Beautifier</strong> (valeryan): Форматирование кода (PSR-12). Laravel Pint также хороший выбор.</li>
-                    <li><strong>EditorConfig for VS Code</strong>: Единый стиль кодирования.</li>
-                    <li><strong>GitLens — Git supercharged</strong> (GitKraken): Расширенные возможности Git.</li>
-                    <li><strong>DotENV</strong> (mikestead): Подсветка <code>.env</code> файлов.</li>
-                    <li><strong>SQLTools</strong> (Matheus Becker): Работа с БД.</li>
-                    <li><strong>Error Lens</strong> (Alexander): Улучшенное отображение ошибок.</li>
-                </ul>
-                <p>Устанавливайте через панель расширений (<code>Ctrl/⌘ + Shift + X</code>).</p>
-            </section>
-
-            <section id="rules" class="content-section">
-                <h2>2. Освоение Cursor Rules (`.cursor/rules`)</h2>
-                <p>Cursor Rules позволяют предоставлять постоянные инструкции AI-моделям, кодируя специфичные для проекта знания, стандарты стиля и архитектурные решения. Это особенно полезно для Laravel, где есть устоявшиеся конвенции.</p>
-
-                <h3>2.1. Типы правил и их иерархия</h3>
+                <h3>1.1. Установка Cursor IDE</h3>
                 <ul class="list-disc list-inside ml-4">
-                    <li><strong>User Rules (Пользовательские):</strong> Глобальные, в настройках Cursor. Простой текст. Для личных предпочтений.</li>
-                    <li><strong>Project Rules (Проектные):</strong> В `.cursor/rules/` проекта, файлы `.mdc`. Формат MDC с YAML frontmatter. Ограничены проектом. Для доменных знаний, стандартов. Могут быть вложенными.</li>
-                    <li><strong>.cursorrules (Устаревший формат):</strong> Один файл в корне. Рекомендуется `.mdc`.</li>
+                    <li>Загрузите установочный файл с официального сайта <a href="https://cursor.com" target="_blank" class="text-sky-600 hover:underline">cursor.com</a>.</li>
+                    <li>Запустите установщик и следуйте инструкциям.</li>
+                    <li>При первом запуске Cursor предложит импортировать настройки и расширения из VS Code. Это рекомендуется для плавного перехода.</li>
+                    <li>Cursor предлагает 14-дневную бесплатную пробную версию Pro-плана.</li>
                 </ul>
-                <p><strong>3-этапный процесс управления правилами:</strong></p>
-                <ol class="list-decimal list-inside ml-4">
-                    <li>Начните с глобальных User Rules.</li>
-                    <li>Перенесите специфичные правила на уровень репозитория (общий `.mdc` или `.cursorrules`).</li>
-                    <li>Разделите на контекстно-зависимые правила (`.cursor/rules/*.mdc`) для гранулярности и эффективности токенов.</li>
-                </ol>
 
-                <h4>Сравнение уровней правил Cursor:</h4>
+                <h3>1.2. Мастер первоначальной конфигурации</h3>
+                <p>После установки Cursor проведет через краткий мастер настройки:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Сочетания клавиш:</strong> По умолчанию используются сочетания VS Code.</li>
+                    <li><strong>Язык для ИИ:</strong> Можно выбрать язык для взаимодействия с AI.</li>
+                    <li><strong>Контекст всей кодовой базы:</strong> Важно включить эту опцию.</li>
+                    <li><strong>Добавление команды терминала:</strong> Позволяет запускать Cursor из командной строки.</li>
+                </ul>
+
+                <h3>1.3. Настройка среды PHP</h3>
+                <p>Качество работы AI-ассистента Cursor напрямую зависит от полноты настройки базовой среды PHP и установленных расширений VS Code.</p>
+                <div class="collapsible-header">
+                    <span>1.3.1. Конфигурация интерпретатора PHP</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Укажите путь к исполняемому файлу PHP в настройках Cursor (<code>settings.json</code>, доступен через <code>Ctrl/⌘ + ,</code>, поиск "php.validate.executablePath").</p>
+                    <pre><code class="language-json">{
+    "php.validate.executablePath": "/usr/bin/php", // Замените на ваш путь (например, /opt/homebrew/bin/php или C:\\php\\php.exe)
+    "php.suggest.basic": false // Рекомендуется отключить базовые PHP-подсказки в пользу Intelephense
+}</code><button class="copy-btn">Копировать</button></pre>
+                    <p>Это устранит предупреждения об отсутствии PHP и позволит использовать более умные расширения.</p>
+                </div>
+
+                <h3>1.4. Основные расширения VS Code для PHP/Laravel в Cursor</h3>
+                <p>Cursor активно использует маркетплейс расширений VS Code. Установите их через панель расширений (<code>Ctrl/⌘ + Shift + X</code>).</p>
                 <div class="overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
-                                <th>Характеристика</th>
-                                <th>User Rules</th>
-                                <th>Project Rules (`.cursorrules`)</th>
-                                <th>Project Rules (`.cursor/rules/*.mdc`)</th>
+                                <th>Название расширения</th>
+                                <th>Издатель</th>
+                                <th>Ключевые функции</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Область</td>
-                                <td>Все проекты</td>
-                                <td>Конкретный репозиторий</td>
-                                <td>Конкретные задачи/контексты</td>
+                                <td>PHP Intelephense</td>
+                                <td>bmewburn</td>
+                                <td>Автодополнение, переход к определению, поиск ссылок, умная документация, рефакторинг. Freemium.</td>
                             </tr>
                             <tr>
-                                <td>Видимость</td>
-                                <td>Только вы</td>
-                                <td>Вся команда</td>
-                                <td>Вся команда</td>
+                                <td>PHP Debug</td>
+                                <td>Xdebug Team (ранее Felix Becker)</td>
+                                <td>Интеграция с Xdebug для отладки PHP.</td>
                             </tr>
                             <tr>
-                                <td>Активация</td>
-                                <td>Всегда активны</td>
-                                <td>Всегда активны для репозитория</td>
-                                <td>Только когда релевантны</td>
+                                <td>Official Laravel Extension (или Laravel Extra Intellisense + Laravel Blade Snippets)</td>
+                                <td>Laravel / Winnie Lin / amiralidev</td>
+                                <td>Подсветка Blade, автодополнение для моделей, маршрутов, Eloquent, Env и т.д.</td>
                             </tr>
                             <tr>
-                                <td>Эффективность токенов</td>
-                                <td>Низкая</td>
-                                <td>Средняя</td>
-                                <td>Высокая</td>
+                                <td>Laravel Pint</td>
+                                <td>open-southeners</td>
+                                <td>Форматирование кода с использованием Laravel Pint.</td>
+                            </tr>
+                             <tr>
+                                <td>PHP DocBlocker</td>
+                                <td>Neil Brayfield</td>
+                                <td>Генерация PHPDoc блоков.</td>
+                            </tr>
+                            <tr>
+                                <td>PHP Namespace Resolver</td>
+                                <td>Mehedi Hassan</td>
+                                <td>Импорт и разрешение пространств имен.</td>
+                            </tr>
+                            <tr>
+                                <td>Error Lens</td>
+                                <td>Alexander</td>
+                                <td>Встроенная подсветка ошибок.</td>
+                            </tr>
+                            <tr>
+                                <td>GitLens</td>
+                                <td>GitKraken</td>
+                                <td>Расширенная интеграция с Git.</td>
+                            </tr>
+                            <tr>
+                                <td>DotENV</td>
+                                <td>mikestead</td>
+                                <td>Подсветка синтаксиса для <code>.env</code> файлов.</td>
+                            </tr>
+                             <tr>
+                                <td>Laravel Sail (если используете Sail)</td>
+                                <td>shreifelagamy</td>
+                                <td>Управление Docker-контейнерами Sail из VS Code.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <p>Эта настройка не является опциональной для серьезной работы с PHP/Laravel в Cursor.</p>
 
-                <h3>2.2. Структура правил (MDC формат) и типы применения</h3>
-                <p>Файл `.mdc` содержит YAML frontmatter и Markdown содержимое.</p>
+                <h3>1.5. Создание или открытие проекта Laravel</h3>
+                <p>Используйте <code>File > Open Folder...</code> для открытия существующего проекта. При открытии папки может появиться диалоговое окно "Workspace Trust". Если вы доверяете источнику кода, выберите "Yes, I trust the authors".</p>
+            </section>
+
+            <section id="project-config" class="content-section">
+                <h2>2. Конфигурирование Проекта в Cursor: Директория `.cursor`</h2>
+                <p>Адаптация поведения Cursor к каждому проекту критически важна. Основным механизмом для этого служит директория <code>.cursor</code> в корне вашего проекта. Файлы <code>.cursor/rules/</code> и <code>.cursorignore</code> (а также <code>.cursorindexingignore</code>) — ключевые инструменты.</p>
+
+                <h3>2.1. Продвинутая конфигурация файла `.cursor` (контекст проекта)</h3>
+                <p>Хотя официальная документация фокусируется на <code>.cursor/rules/</code>, некоторые гайды предлагают использовать файл <code>.cursor</code> (или <code>.cursor.yaml</code>) в корне проекта для определения общего контекста, информации о проекте и даже базовых правил или стилей кода. Это может выглядеть так:</p>
+                <pre><code class="language-yaml"># .cursor (или .cursor.yaml)
+context: # Файлы и папки, которые AI должен учитывать в первую очередь
+  - "**/*.php"
+  - "**/*.blade.php"
+  - "composer.json"
+  - "package.json"
+  - "routes/**/*.php"
+  - "config/**/*.php"
+  - "database/migrations/**/*.php"
+
+exclude: # Файлы и папки, которые AI должен игнорировать (дополняет .cursorignore)
+  - "vendor/**/*"
+  - "node_modules/**/*"
+  - "storage/framework/views/**/*"
+  - "public/build/**/*"
+  - "bootstrap/cache/**/*"
+
+# Базовые правила или указания для AI (можно вынести в .cursor/rules/*.mdc для более сложных случаев)
+rules:
+  - "Используй Laravel best practices."
+  - "Следуй стандартам кодирования PSR-12."
+  - "Пиши код на PHP 8.2+ с использованием строгой типизации."
+  - "Для API ответов используй Laravel Resources."
+  - "Валидируй входящие данные через Form Requests."
+
+project_info: |
+  Это Laravel проект версии 11, использующий PHP 8.2.
+  База данных: MySQL.
+  Кэширование: Redis.
+  Очереди: Redis.
+  Аутентификация API: Laravel Sanctum.
+  Ключевые пакеты: Spatie MediaLibrary, Laravel Telescope.
+
+# Опционально: определение "личности" AI или стиля кода
+ai_personality: "Опытный Laravel разработчик, который пишет чистый и поддерживаемый код."
+
+code_style:
+  php:
+    - "Используй строгую типизацию (declare(strict_types=1);)."
+    - "Применяй Dependency Injection через конструктор."
+    - "Для бизнес-логики используй Action классы или Сервисные классы."
+    - "Предпочитай Eloquent ORM и его отношения вместо 'сырых' SQL запросов или Query Builder join."
+  templates: # Шаблоны для генерации кода (пример)
+    controller: |
+      <?php
+
+      namespace App\Http\Controllers;
+
+      use Illuminate\Http\Request;
+
+      class {{ClassName}} extends Controller
+      {
+          // TODO: Implement methods
+      }
+    service: |
+      <?php
+
+      namespace App\Services;
+
+      class {{ClassName}}
+      {
+          public function __construct()
+          {
+              //
+          }
+      }
+# инструкции для специфичных задач
+instructions:
+  refactoring: "При рефакторинге старайся сохранять обратную совместимость публичного API класса/метода."
+  testing: "Пиши feature тесты для контроллеров и unit тесты для сервисов/actions. Используй PestPHP."
+  security: "Всегда валидируй все входные данные. Проверяй авторизацию для всех защищенных эндпоинтов."</code><button class="copy-btn">Копировать</button></pre>
+                <p>Такой файл помогает AI лучше понять специфику вашего проекта с самого начала. Однако, более сложные и гранулированные правила лучше определять в <code>.cursor/rules/*.mdc</code>.</p>
+
+                <h3>2.2. Игнорирование файлов: `.cursorignore` и `.cursorindexingignore`</h3>
+                <p>Эти файлы контролируют, какие директории и файлы Cursor может индексировать и использовать в качестве контекста. Это важно для безопасности и производительности.</p>
+                <div class="collapsible-header">
+                    <span>2.2.1. Назначение и безопасность</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong><code>.cursorignore</code>:</strong> Предотвращает утечку конфиденциальной информации (например, из <code>.env</code> файла с ключами API, учетными данными БД) в контекст AI и, потенциально, на серверы LLM. Файлы, указанные здесь, исключаются как из индексации, так и из доступа AI-функциями (Chat, Tab, Cmd+K, @-ссылки). Это более безопасный вариант.</p>
+                    <p><strong><code>.cursorindexingignore</code>:</strong> Файлы исключаются только из индексации, но AI все еще может получить к ним доступ, если на них есть явная ссылка или AI сочтет их релевантными.</p>
+                    <div class="alert-danger">
+                        <strong>Критически важно для безопасности:</strong> Всегда добавляйте <code>.env*</code> и другие файлы с секретами в <code>.cursorignore</code>. Хотя Cursor прилагает усилия для блокировки доступа, 100% гарантии отсутствия утечек из-за непредсказуемого поведения LLM нет.
+                    </div>
+                </div>
+                <div class="collapsible-header">
+                    <span>2.2.2. Производительность и синтаксис</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>В больших проектах исключение нерелевантных частей (<code>node_modules/</code>, <code>vendor/</code>, директории сборки, большие логи) ускоряет индексацию и повышает точность поиска контекста.</p>
+                    <p>Синтаксис идентичен <code>.gitignore</code>. Пустые строки и строки с <code>#</code> игнорируются. Паттерны сопоставляются относительно местоположения файла.</p>
+                    <p>Пример <code>.cursorignore</code> для Laravel:</p>
+                    <pre><code># Конфиденциальные файлы
+.env*
+*.pem
+*.key
+credentials.json
+
+# Зависимости и сгенерированные файлы
+/vendor/
+/node_modules/
+/public/build/
+/public/storage/
+/storage/app/
+/storage/framework/
+/storage/logs/*.log
+!/storage/logs/important.log # Пример отмены игнорирования
+
+# IDE-специфичные файлы (если не в .gitignore)
+.idea/
+.vscode/ # Кроме .vscode/settings.json или .vscode/launch.json, если они нужны для команды
+
+# Другое
+*.lock
+composer.phar</code><button class="copy-btn">Копировать</button></pre>
+                </div>
+                 <div class="collapsible-header">
+                    <span>2.2.3. Игнорирование по умолчанию и решение проблем с `.env`</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Cursor по умолчанию учитывает правила из <code>.gitignore</code> вашего проекта и имеет свой список файлов, игнорируемых по умолчанию (например, <code>package-lock.json</code>, <code>composer.lock</code>, <code>.env*</code>).</p>
+                    <p><strong>Решение проблем с <code>.env</code>:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Убедитесь, что <code>.env*</code> есть в <code>.cursorignore</code>.</li>
+                        <li>Используйте специфичные паттерны, например, <code>/.env</code> (если <code>.env</code> всегда в корне).</li>
+                        <li>После настройки проверьте поведение AI, задав вопрос, который мог бы выявить знание содержимого <code>.env</code>.</li>
+                    </ul>
+                </div>
+
+                <h3>2.3. Проектно-специфические настройки (<code>.vscode/settings.json</code>)</h3>
+                <p>Для настроек, специфичных для проекта, которые не касаются непосредственно поведения AI (например, настройки линтера, форматера, специфичные для проекта задачи), используйте стандартный для VS Code файл <code>.vscode/settings.json</code>. Cursor их также подхватит.</p>
+                <pre><code class="language-json">{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client", // или другой форматер
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client" // или open-southeners.laravel-pint
+    },
+    "intelephense.environment.phpVersion": "8.2",
+    // Настройки для Laravel Pint, если используется
+    "laravel-pint.enable": true,
+    "laravel-pint.configPath": "pint.json", // если есть кастомный конфиг
+    // Исключение файлов из проводника VS Code (не для AI, а для отображения)
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": true, // Можно оставить true, если не нужно видеть в дереве файлов
+        "**/vendor": true      // Аналогично
+    }
+}</code><button class="copy-btn">Копировать</button></pre>
+
+                <h3>2.4. Переменные окружения</h3>
+                <p>Проекты Laravel сильно зависят от файлов <code>.env</code>. Cursor наследует переменные окружения из оболочки, из которой он запущен. При работе с Laravel Sail или Herd переменные окружения управляются внутри Docker-контейнеров или самой средой.</p>
+                <div class="alert-warning">
+                    <p><strong>Внимание:</strong> Избегайте встроенных комментариев в файлах <code>.env</code> (например, <code>CACHE_DRIVER=file # комментарий</code>), так как это может привести к некорректному парсингу. Размещайте комментарии на отдельных строках.</p>
+                </div>
+            </section>
+
+            <section id="rules" class="content-section">
+                <h2>3. Освоение Cursor Rules (`.cursor/rules/*.mdc`)</h2>
+                <p>Cursor Rules — это многократно используемые, версионируемые инструкции для управления поведением AI-агента (Agent) и функции Cmd+K. Они хранятся в <code>.cursor/rules/</code> в виде файлов <code>.mdc</code> (Markdown Components) и позволяют кодировать специфичные для домена знания, автоматизировать рабочие процессы и стандартизировать стиль или архитектуру.</p>
+
+                <h3>3.1. Структура и типы правил</h3>
+                 <p>Файл <code>.mdc</code> содержит YAML frontmatter и Markdown содержимое.</p>
                 <pre><code class="language-yaml">---
 description: Optional description for Agent Requested rules.
 globs: ["optional/glob/pattern/**", "*.php"] # For Auto Attached rules
@@ -406,63 +570,138 @@ alwaysApply: false # True for Always rules
                 
                 <h4>Типы применения правил:</h4>
                 <ul class="list-disc list-inside ml-4">
-                    <li><strong>`Always` (Всегда):</strong> `alwaysApply: true`. Правило всегда включается в контекст.</li>
-                    <li><strong>`Auto Attached` (Автоматически присоединяемые):</strong> `globs: ["pattern"]`. Включается, когда файлы, соответствующие `globs`, в контексте.</li>
-                    <li><strong>`Agent Requested` (Запрашиваемые агентом):</strong> `description: "Описание"`. AI решает, использовать ли правило на основе описания.</li>
-                    <li><strong>`Manual` (Ручные):</strong> `alwaysApply: false` (или отсутствует). Включается только при явном упоминании `@имяПравила`.</li>
+                    <li><strong><code>Always</code> (Всегда):</strong> <code>alwaysApply: true</code>. Правило всегда включается в контекст.</li>
+                    <li><strong><code>Auto Attached</code> (Автоматически присоединяемые):</strong> <code>globs: ["pattern"]</code>. Включается, когда файлы, соответствующие <code>globs</code>, в контексте.</li>
+                    <li><strong><code>Agent Requested</code> (Запрашиваемые агентом):</strong> <code>description: "Описание"</code>. AI решает, использовать ли правило на основе описания.</li>
+                    <li><strong><code>Manual</code> (Ручные):</strong> <code>alwaysApply: false</code> (или отсутствует). Включается только при явном упоминании <code>@имяПравила</code> (имя файла без <code>.mdc</code>).</li>
+                </ul>
+                <p>Поддерживаются также вложенные правила для организации специфичных для домена правил ближе к коду.</p>
+
+                <h3>3.2. Лучшие практики написания правил для Laravel/PHP</h3>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Конкретность и действенность:</strong> Указывайте AI точно, что делать или чего избегать.</li>
+                    <li><strong>Краткость:</strong> Стремитесь к ясности, до 500 строк.</li>
+                    <li><strong>Примеры:</strong> Включайте короткие фрагменты кода или ссылки на файлы (<code>@filename.ext</code>).</li>
+                    <li><strong>Декомпозиция:</strong> Разбивайте сложные стандарты на мелкие, сфокусированные правила.</li>
+                    <li><strong>Описания:</strong> Для `Agent Requested` пишите четкие описания.</li>
+                    <li><strong>Итеративность:</strong> Уточняйте правила на основе производительности AI.</li>
+                    <li><strong>Фокус на Laravel/PHP:</strong> Отражайте конвенции Laravel (PSR-12, Eloquent, Repository/Service, маршрутизация, валидация).</li>
                 </ul>
 
+                <h3>3.3. Примеры правил проекта для Laravel/PHP</h3>
+                <p>Ниже приведены примеры, которые можно адаптировать для вашего проекта. Рекомендуется хранить каждое логически обособленное правило в отдельном <code>.mdc</code> файле в директории <code>.cursor/rules/</code>.</p>
+
                 <div class="collapsible-header">
-                    <span>Пример правила `Auto Attached` для Laravel контроллеров</span>
+                    <span>Пример: `laravel-best-practices.mdc` (Общие принципы Laravel)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <pre><code class="language-yaml">---
+alwaysApply: true # Или auto-attached для .php файлов
+description: "Общие лучшие практики и ключевые принципы для разработки на Laravel в этом проекте."
+# globs: ["**/*.php"] # Если auto-attached
+---
+# Ключевые принципы Laravel
+- Ответы должны быть краткими и техническими, с точными примерами на PHP/Laravel.
+- Приоритет принципам SOLID и чистой архитектуре.
+- Следуйте лучшим практикам и соглашениям PHP и Laravel для согласованности.
+- Проектируйте с учетом масштабируемости и поддерживаемости.
+- Используйте согласованные и описательные имена для переменных, методов и классов.
+- Отдавайте предпочтение внедрению зависимостей и сервис-контейнерам Laravel.
+
+# Стандарты PHP и Laravel
+- Используйте возможности PHP 8.2+ (укажите вашу версию).
+- Придерживайтесь стандартов кодирования PSR-12.
+- Всегда используйте строгую типизацию: `declare(strict_types=1);` в начале PHP файлов.
+- Используйте встроенные функции и хелперы Laravel.
+- Следуйте структуре директорий и соглашениям об именовании файлов Laravel.
+- Реализуйте надежную обработку ошибок и логирование (встроенные механизмы Laravel, кастомные исключения, try-catch).
+- Используйте функции валидации Laravel для данных форм и запросов (Form Requests).
+- Реализуйте middleware для фильтрации и модификации запросов.
+- Используйте Eloquent ORM для взаимодействия с БД, предпочитая его Query Builder для сложных запросов.
+- Создавайте и поддерживайте корректные миграции и сидеры БД.
+- Доступ к переменным окружения осуществляйте через конфигурационные файлы (`config('app.name')`), а не напрямую (`env('APP_NAME')`) в коде приложения.
+- Избегайте N+1 запросов, используя eager loading (`with()`).
+- Для моделей, которые не должны удаляться окончательно, реализуйте soft deletes.
+- **Для Laravel 11+**: Файл `app/Console/Kernel.php` может отсутствовать; используйте `bootstrap/app.php` для соответствующих конфигураций. Команды в `app/Console/Commands/` регистрируются автоматически.</code><button class="copy-btn">Копировать</button></pre>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>Пример: `controller-guidelines.mdc` (Правила для контроллеров)</span>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="collapsible-content">
                     <pre><code class="language-yaml">---
 globs: ["app/Http/Controllers/**/*.php"]
-alwaysApply: false
+alwaysApply: false # Auto-attached
+description: "Руководство по стилю и проектированию контроллеров Laravel."
 ---
-# Правила для Laravel контроллеров
-- Контроллеры должны быть "тонкими".
-- Вся бизнес-логика должна быть вынесена в сервисные классы в директории \`app/Services\`.
-- Для валидации входящих данных используйте Form Requests.</code><button class="copy-btn">Копировать</button></pre>
+# Проектирование контроллеров Laravel
+- Контроллеры должны быть `final` классами для предотвращения наследования.
+- Свойства контроллеров должны быть `readonly` (если применимо к версии PHP).
+- Избегайте прямого внедрения множества зависимостей в конструктор контроллера; используйте внедрение через методы или сервисные классы.
+- Контроллеры должны быть "тонкими", делегируя бизнес-логику сервисным классам или Action-классам.
+- Используйте Form Requests для валидации входящих данных.
+- Возвращайте стандартизированные ответы, например, через API Resources для API.
+- Группируйте связанные методы в одном контроллере (например, CRUD для одной сущности).</code><button class="copy-btn">Копировать</button></pre>
                 </div>
 
-                <h3>2.3. Создание и лучшие практики написания правил</h3>
-                <p><strong>Способы создания:</strong> вручную, через палитру команд ("New Cursor Rule"), из чата (`/Generate Cursor Rules`).</p>
-                <p><strong>Лучшие практики:</strong></p>
-                <ul class="list-disc list-inside ml-4">
-                    <li><strong>Конкретность и действенность.</strong></li>
-                    <li><strong>Краткость (до 500 строк).</strong></li>
-                    <li><strong>Модульность.</strong></li>
-                    <li><strong>Примеры кода и ссылки на файлы (`@filename.ext`).</strong></li>
-                    <li><strong>Четкие описания (для `Agent Requested`).</strong></li>
-                    <li><strong>Итеративность.</strong></li>
-                    <li><strong>Фокус на специфике проекта, а не на общих практиках.</strong></li>
-                    <li><strong>Использование `instructions.md` для сложных задач.</strong></li>
-                </ul>
-
                 <div class="collapsible-header">
-                    <span>Примеры правил для Laravel</span>
+                    <span>Пример: `eloquent-model-guidelines.mdc` (Правила для моделей Eloquent)</span>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="collapsible-content">
-                    <h4>Соблюдение PSR-12:</h4>
                     <pre><code class="language-yaml">---
-alwaysApply: true
-description: "Обеспечение соответствия стандарту кодирования PSR-12."
----
-- Весь PHP код должен соответствовать стандарту PSR-12.
-- Используй автоматическое форматирование (PHP CS Fixer или Pint).</code><button class="copy-btn">Копировать</button></pre>
-
-                    <h4>Генерация Eloquent моделей:</h4>
-                    <pre><code class="language-yaml">---
-description: "Правила для генерации Eloquent моделей в Laravel."
 globs: ["app/Models/**/*.php"]
+alwaysApply: false # Auto-attached
+description: "Рекомендации по созданию и использованию моделей Eloquent."
 ---
-- Модели создаются командой \`php artisan make:model ModelName -mfs\`.
-- Используй типажи \`HasFactory\`, \`SoftDeletes\`.
-- Определяй \`$fillable\` или \`$guarded\`.
-- Корректные типы возвращаемых значений для отношений.</code><button class="copy-btn">Копировать</button></pre>
+# Проектирование моделей Eloquent
+- Модели Eloquent должны быть `final` классами.
+- Используйте явные `$fillable` или `$guarded` свойства.
+- Четко определяйте отношения Eloquent (`hasOne`, `hasMany`, `belongsTo`, `belongsToMany`, etc.) с корректными типами возвращаемых значений (например, `Illuminate\Database\Eloquent\Relations\HasMany`).
+- Добавляйте PHPDoc к свойствам модели, особенно для "магических" атрибутов, если `laravel-ide-helper` не используется или его информации недостаточно.
+- Используйте типажи, такие как `HasFactory`, `SoftDeletes`, где это необходимо.
+- Кастомные аксессоры и мутаторы должны быть хорошо документированы.
+- Для сложных запросов, специфичных для модели, используйте Query Scopes.</code><button class="copy-btn">Копировать</button></pre>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>Пример: `pest-testing-guidelines.mdc` (Правила для PestPHP тестов)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <pre><code class="language-yaml">---
+description: "Руководство по генерации PestPHP тестов для новых функций."
+alwaysApply: false # Manual или Agent Requested
+# globs: ["tests/Feature/**/*.php", "tests/Unit/**/*.php"] # Если хотите Auto-attached при работе с тестами
+---
+# Руководство по генерации PestPHP тестов
+- Генерируйте тесты PestPHP для всех новых публичных методов в контроллерах и сервисах.
+- Feature тесты должны проверять HTTP эндпоинты, включая статусы ответа, структуру JSON (для API), редиректы.
+- Unit тесты должны проверять отдельные компоненты (сервисы, actions) в изоляции.
+- Убедитесь, что тесты покрывают основные сценарии использования ("happy path") и пограничные случаи (ошибки валидации, неавторизованный доступ, исключения).
+- Используйте датасеты Pest (`with()`) для параметризации тестов, где это уместно.
+- Предпочитайте `expect()` для утверждений.
+- Используйте фабрики моделей для создания тестовых данных.
+- Очищайте состояние после тестов, если это необходимо (например, используя трейт `RefreshDatabase`).
+- Пример структуры feature теста:
+  ```php
+  use function Pest\Laravel\{getJson, postJson};
+
+  it('should return a successful response for listing products', function () {
+      // Arrange: создать необходимые данные через фабрики
+      \App\Models\Product::factory()->count(3)->create();
+
+      // Act
+      $response = getJson(route('api.products.index'));
+
+      // Assert
+      $response->assertOk();
+      $response->assertJsonCount(3, 'data');
+  });
+  ```</code><button class="copy-btn">Копировать</button></pre>
+                     <p class="mt-2">Вы можете найти больше примеров правил на <a href="https://cursor.directory/rules/laravel" target="_blank" class="text-sky-600 hover:underline">Cursor Directory - Laravel Rules</a>.</p>
                 </div>
 
                 <div class="gemini-feature-card">
@@ -478,28 +717,14 @@ globs: ["app/Models/**/*.php"]
                     </div>
                     <div id="ruleError" class="text-red-500 mt-2" style="display: none;"></div>
                 </div>
-
-
-                <h3>2.4. Безопасность: `.cursorignore` для конфиденциальных данных</h3>
-                <div class="alert-info">
-                    <p><strong>Критически важно:</strong> Создайте файл <code>.cursorignore</code> в корне проекта для предотвращения утечки конфиденциальных данных. Cursor может передавать скрытые файлы на свои серверы.</p>
-                </div>
-                <p>Пример <code>.cursorignore</code> для Laravel:</p>
-                <pre><code>.env
-.env.*
-storage/logs/*.log
-*.pem
-*.key
-vendor/
-node_modules/</code><button class="copy-btn">Копировать</button></pre>
             </section>
 
-            <section id="context" class="content-section">
-                <h2>3. Использование контекста: заставляем AI понимать вашу кодовую базу</h2>
-                <p>Эффективность AI-ассистента зависит от понимания контекста проекта. Cursor использует символы `@` для управления контекстом.</p>
+            <section id="context-at" class="content-section">
+                <h2>4. Использование Контекста: Заставляем AI Понимать Вашу Кодовую Базу (`@`)</h2>
+                <p>Эффективность AI-ассистента Cursor критически зависит от его способности понимать контекст вашего проекта. Символы <code>@</code> в чате, Composer (режим Agent) и при использовании Cmd+K являются ключевым инструментом для управления этим контекстом.</p>
 
-                <h3>3.1. Сила символов `@`</h3>
-                <p>Символы `@` в чате или Cmd-K позволяют включать части проекта или внешнюю информацию в контекст AI.</p>
+                <h3>4.1. Сила символов `@`</h3>
+                <p>Символы <code>@</code> позволяют включать различные части вашего проекта или внешнюю информацию в "поле зрения" AI, делая его ответы и предложения более точными и релевантными.</p>
                 <div class="overflow-x-auto">
                     <table>
                         <thead>
@@ -512,148 +737,101 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
                         <tbody>
                             <tr>
                                 <td><code>@Files</code></td>
-                                <td>Ссылка на файлы.</td>
-                                <td><code>@app/Models/User.php Объясни отношения.</code></td>
+                                <td>Ссылка на один или несколько конкретных файлов в вашем проекте.</td>
+                                <td><code>@app/Models/User.php @app/Http/Controllers/UserController.php Объясни, как контроллер использует модель User.</code></td>
                             </tr>
                             <tr>
                                 <td><code>@Folders</code></td>
-                                <td>Ссылка на директории.</td>
-                                <td><code>@app/Http/Controllers Рефактори контроллеры.</code></td>
+                                <td>Ссылка на целые директории для предоставления более широкого контекста.</td>
+                                <td><code>@app/Services/ Проанализируй сервисы на предмет дублирования логики.</code></td>
                             </tr>
                             <tr>
                                 <td><code>@Code</code></td>
-                                <td>Ссылка на фрагменты кода/символы.</td>
-                                <td>Выделить функцию, в чате: <code>@Code Как оптимизировать?</code></td>
+                                <td>Ссылка на выделенный в редакторе фрагмент кода или на конкретные символы (функции, классы, методы) из вашей кодовой базы.</td>
+                                <td>(Выделить метод в контроллере) В чате: <code>@Code Рефактори этот метод, чтобы он был более читаемым.</code></td>
                             </tr>
                             <tr>
                                 <td><code>@Docs</code></td>
-                                <td>Доступ к документации.</td>
-                                <td><code>@Docs Laravel Eloquent полиморфные отношения?</code></td>
+                                <td>Доступ к документации и руководствам (встроенным, проектным или добавленным через MCP).</td>
+                                <td><code>@LaravelDocs Как правильно настроить полиморфные отношения в Eloquent?</code> или <code>@MyProjectDocs Каков процесс аутентификации в этом приложении?</code></td>
                             </tr>
                              <tr>
                                 <td><code>@Git</code></td>
-                                <td>Доступ к истории Git.</td>
-                                <td><code>@Git недавние изменения в User?</code></td>
+                                <td>Доступ к истории Git, изменениям, коммитам и веткам.</td>
+                                <td><code>@Commit Какие изменения были внесены в модель User в последнем коммите?</code> или <code>@Branch feature-new-payment Что изменилось в этой ветке по сравнению с main?</code></td>
                             </tr>
                             <tr>
                                 <td><code>@Web</code></td>
-                                <td>Ссылка на веб-ресурсы.</td>
-                                <td><code>@Web последние стандарты PSR.</code></td>
+                                <td>Ссылка на внешние веб-ресурсы, статьи или документацию по URL.</td>
+                                <td><code>@Web https://laravel.com/docs/11.x/queues Объясни основные концепции очередей в Laravel 11.</code></td>
                             </tr>
                             <tr>
-                                <td><code>@Lint Errors</code></td>
-                                <td>Фокус на ошибках линтера.</td>
-                                <td><code>@Lint Errors Помоги исправить.</code></td>
+                                <td><code>@LintErrors</code></td>
+                                <td>Фокусирует внимание AI на ошибках, обнаруженных линтером в текущем файле или проекте.</td>
+                                <td><code>@LintErrors Помоги исправить эти синтаксические ошибки PHP.</code></td>
                             </tr>
                             <tr>
                                 <td><code>@Codebase</code></td>
-                                <td>Поиск по всей кодовой базе.</td>
-                                <td><code>@codebase найти PaymentProcessed.</code></td>
+                                <td>Позволяет AI "общаться" со всей вашей кодовой базой для поиска информации или анализа.</td>
+                                <td><code>@Codebase Где в проекте используется класс PaymentService и как?</code></td>
                             </tr>
                              <tr>
-                                <td><code>#Files</code></td>
-                                <td>Альтернативная ссылка на файлы.</td>
+                                <td><code>@CursorRules</code></td>
+                                <td>Ссылка на правила проекта Cursor, определенные в <code>.cursor/rules/</code>.</td>
+                                <td><code>@controller-guidelines.mdc Убедись, что этот новый контроллер соответствует нашим проектным соглашениям.</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>@Definitions</code></td>
+                                <td>Ссылка на определения классов, функций, методов. Полезно для быстрого получения информации о символе.</td>
+                                <td><code>@App\Models\User Опиши поля и методы этой модели.</code> (предполагаемое использование)</td>
+                            </tr>
+                            <tr>
+                                <td><code>@Notepads</code></td>
+                                <td>Доступ к вашим личным или проектным блокнотам в Cursor.</td>
+                                <td><code>@MyProjectNotes Напомни основные шаги для деплоя этого приложения.</code></td>
+                            </tr>
+                             <tr>
+                                <td><code>@PastChats</code></td>
+                                <td>Позволяет ссылаться на обобщенные предыдущие сессии чата или Agent.</td>
+                                <td><code>@PastChats Вспомни, какой план мы составили для реализации фичи X на прошлой неделе.</code></td>
+                            </tr>
+                             <tr>
+                                <td><code>#Files</code> (альтернатива)</td>
+                                <td>Аналогично <code>@Files</code>, может использоваться для ссылки на файлы.</td>
                                 <td><code>#app/Services/PaymentService.php</code></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h3>3.2. Стратегии предоставления эффективного контекста</h3>
+                <h3>4.2. Стратегии предоставления эффективного контекста</h3>
                 <ul class="list-disc list-inside ml-4">
-                    <li><strong>Будьте конкретны:</strong> Используйте <code>@Code</code> для частей файлов.</li>
-                    <li><strong>Итеративное построение:</strong> Начните с широкого контекста (<code>@Folders</code>), затем сужайте.</li>
-                    <li><strong>Комбинируйте с правилами:</strong> Используйте <code>@Cursor Rules</code>.</li>
-                    <li><strong>Контекст в режиме Agent:</strong> Agent пытается найти контекст автоматически, но можно направлять его.</li>
-                    <li><strong>Проверяйте контекст:</strong> Следите, какой контекст использует Cursor.</li>
+                    <li><strong>Будьте конкретны, но не избыточны:</strong> Для точечных задач используйте <code>@Code</code> или <code>@Files</code> для конкретных файлов. Для более широкого обзора — <code>@Folders</code> или <code>@Codebase</code>.</li>
+                    <li><strong>Итеративное построение контекста:</strong> Начните с более общего запроса, затем уточняйте, добавляя конкретные файлы или правила.</li>
+                    <li><strong>Комбинируйте с правилами:</strong> Используйте <code>@CursorRules</code>, чтобы AI следовал стандартам вашего проекта.</li>
+                    <li><strong>Контекст в режиме Agent:</strong> Agent пытается найти релевантный контекст автоматически, но вы можете (и часто должны) направлять его, предоставляя начальные файлы или папки.</li>
+                    <li><strong>Проверяйте контекст:</strong> Обращайте внимание, какой контекст фактически использует Cursor (иногда это отображается в интерфейсе AI).</li>
+                    <li><strong>Четко указывайте версии:</strong> Особенно для Laravel, упоминайте используемую версию, так как API и функции могут меняться.</li>
+                    <li><strong>Упоминайте ключевые пакеты:</strong> Если задача связана с конкретными пакетами (Spatie, Livewire, Inertia, Filament), укажите это.</li>
                 </ul>
-                <p>Освоение "курирования контекста" превращает AI в специалиста по вашему Laravel-проекту.</p>
-            </section>
-
-            <section id="mcp" class="content-section">
-                <h2>4. Расширение возможностей Cursor с помощью Model Context Protocol (MCP) серверов</h2>
-                <p>Model Context Protocol (MCP) стандартизирует взаимодействие AI-приложений с внешними источниками данных и инструментами. MCP-серверы расширяют возможности Cursor, позволяя подключаться к БД, API, актуальной документации.</p>
-
-                <h3>4.1. Что такое MCP-серверы и их значение для Laravel</h3>
-                <p>MCP-серверы позволяют AI в Cursor:</p>
-                <ul class="list-disc list-inside ml-4">
-                    <li>Запрашивать БД напрямую.</li>
-                    <li>Взаимодействовать с внешними сервисами (Jira, Stripe).</li>
-                    <li>Использовать актуальную документацию (например, через Context7).</li>
-                    <li>Интегрироваться со специфичными инструментами (выполнять Artisan-команды).</li>
-                </ul>
-
-                <h3>4.2. Конфигурация MCP-серверов в Cursor</h3>
-                <p>Настройка через JSON-файлы: <code>.cursor/mcp.json</code> (проектный) или <code>~/.cursor/mcp.json</code> (глобальный).</p>
-                <p>Базовая структура <code>mcp.json</code>:</p>
-                <pre><code class="language-json">{
-  "mcpServers": {
-    "имя-сервера": { 
-      "command": "npx", 
-      "args": ["-y", "имя-mcp-пакета"],
-      "env": { "API_KEY": "ваш_api_ключ" } 
-    }
-  }
-}</code><button class="copy-btn">Копировать</button></pre>
-
-                <h3>4.3. Context7.com: актуальная документация Laravel для AI</h3>
-                <p>Context7 предоставляет AI доступ к свежей, версионной документации для Laravel и других библиотек. Это решает проблему устаревших знаний LLM.</p>
-                <h4>Настройка Context7:</h4>
-                <ol class="list-decimal list-inside ml-4">
-                    <li>Требуется Node.js v18.0.0+.</li>
-                    <li>Добавьте в <code>mcp.json</code>:</li>
-                </ol>
-                <pre><code class="language-json">{
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
-    }
-  }
-}</code><button class="copy-btn">Копировать</button></pre>
-                <ol start="3" class="list-decimal list-inside ml-4">
-                    <li>Перезапустите Cursor.</li>
-                </ol>
-                <p><strong>Использование:</strong> Добавьте <code>use context7</code> к запросу. Пример: <code>"Как настроить event broadcasting в Laravel? use context7"</code></p>
-
-                <h3>4.4. Интеграция Laravel Helpers MCP (например, от jsonallen)</h3>
-                <p>Существуют MCP-серверы для упрощения Laravel-разработки, например, <code>laravel-mcp</code> от jsonallen.</p>
-                <p><strong>Возможности:</strong></p>
-                <ul class="list-disc list-inside ml-4">
-                    <li><code>tail_log_file</code>: Просмотр логов Laravel.</li>
-                    <li><code>search_log_errors</code>: Поиск ошибок в логах.</li>
-                    <li><code>run_artisan_command</code>: Выполнение Artisan-команд. Пример: <code>"Используй run_artisan_command, чтобы создать модель Product -mfs."</code></li>
-                    <li><code>show_model</code>: Информация о Eloquent модели и связях.</li>
-                </ul>
-                <p>Настройка включает клонирование репозитория сервера и его добавление в <code>mcp.json</code>.</p>
-
-                <h3>4.5. Другие полезные MCP-серверы</h3>
-                <ul class="list-disc list-inside ml-4">
-                    <li><strong>Ragie.ai:</strong> Google Drive, Jira, Slack, Notion, Confluence.</li>
-                    <li><strong>Heroku MCP Server:</strong> Управление приложениями Heroku.</li>
-                    <li><strong>Figma MCP Server:</strong> Данные о дизайне из Figma.</li>
-                    <li><strong>MCP-серверы для баз данных:</strong> PostgreSQL, MySQL, SQLite.</li>
-                </ul>
-
-                <h3>4.6. Использование MCP-инструментов и ограничения</h3>
-                <p>AI автоматически пытается использовать релевантные MCP-инструменты. Можно указать явно: <code>"Используй &lt;имя_инструмента&gt; для..."</code>. Режим "Auto-run" позволяет выполнять без подтверждения.</p>
-                <p><strong>Ограничения:</strong> первые 40 инструментов, проблемы с удаленной разработкой, неполная поддержка "ресурсов" MCP.</p>
+                <p>Освоение "искусства курирования контекста" превращает AI из простого генератора кода в настоящего специалиста по вашему Laravel-проекту.</p>
             </section>
 
             <section id="ai-dev" class="content-section">
-                <h2>5. Разработка с AI: советы и приемы для PHP/Laravel</h2>
-                <p>Эффективное использование AI в Cursor требует четких инструкций, правильного контекста и понимания возможностей AI.</p>
+                <h2>5. Разработка с AI: Советы и Приемы для PHP/Laravel</h2>
+                <p>Эффективное использование AI в Cursor для разработки на PHP/Laravel требует не только знания команд, но и умения правильно формулировать запросы (промптинг), предоставлять релевантный контекст и понимать, как различные AI-функции (Tab, Cmd+K, Chat, Agent) могут работать в синергии.</p>
 
                 <h3>5.1. Эффективные стратегии промптинга для задач Laravel</h3>
-                <p><strong>Общие принципы:</strong></p>
+                <p><strong>Общие принципы качественного промпта:</strong></p>
                 <ul class="list-disc list-inside ml-4">
-                    <li><strong>Конкретность и ясность.</strong></li>
-                    <li><strong>Предоставление контекста (<code>@</code> символы, правила).</strong></li>
-                    <li><strong>Итеративность (План -> Проверка -> Выполнение):</strong> Сначала попросите AI составить план.</li>
-                    <li><strong>Просьба задавать уточняющие вопросы.</strong></li>
-                    <li><strong>Разбиение сложных задач.</strong></li>
-                    <li><strong>Фокус на деталях.</strong></li>
-                    <li><strong>Использование `instructions.md` для сложных функций.</strong></li>
+                    <li><strong>Конкретность и ясность:</strong> Четко опишите, что вы хотите получить. Вместо "напиши код для юзеров" лучше "создай Eloquent модель User с полями name, email, password и соответствующую миграцию".</li>
+                    <li><strong>Предоставление контекста:</strong> Используйте <code>@</code> символы (<code>@Files</code>, <code>@Folders</code>, <code>@CursorRules</code>) для указания релевантных частей проекта.</li>
+                    <li><strong>Итеративность (План -> Проверка -> Выполнение):</strong> Для сложных задач сначала попросите AI составить план. Проверьте план, затем попросите реализовать его по шагам.</li>
+                    <li><strong>Просьба задавать уточняющие вопросы:</strong> Добавьте в промпт фразу типа "Если что-то неясно, задавай уточняющие вопросы".</li>
+                    <li><strong>Разбиение сложных задач:</strong> Большие задачи лучше делить на более мелкие и давать AI по одной.</li>
+                    <li><strong>Фокус на деталях:</strong> Указывайте версии (Laravel, PHP), используемые пакеты, желаемый стиль кода (если не покрыто правилами).</li>
+                    <li><strong>Использование `instructions.md`:</strong> Для очень сложных функций или архитектурных задач можно создать файл <code>instructions.md</code> с подробным описанием и ссылаться на него (<code>@Files instructions.md</code>).</li>
+                    <li><strong>Примеры "хорошего" и "плохого":</strong> Иногда полезно показать AI пример того, как делать нужно, и как делать не нужно.</li>
                 </ul>
 
                 <div class="gemini-feature-card">
@@ -670,172 +848,589 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
                     <div id="promptError" class="text-red-500 mt-2" style="display: none;"></div>
                 </div>
 
-                <h4>Примеры промптов для Laravel:</h4>
+                <h4>Примеры промптов для распространенных Laravel-задач:</h4>
                 <div class="collapsible-header">
-                    <span>Генерация Eloquent моделей и связей</span>
+                    <span>Генерация Eloquent моделей, миграций и связей</span>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="collapsible-content">
                     <p><strong>Промпт:</strong></p>
-                    <pre><code>"Сгенерируй Eloquent модель 'Product' с полями: name (string), description (text), price (decimal, 8,2). Включи UUID и SoftDeletes. Определи отношение один-ко-многим с 'Review' и многие-ко-многим с 'Category'. Создай миграцию. Следуй конвенциям Laravel."</code><button class="copy-btn">Копировать</button></pre>
-                    <p><strong>Контекст:</strong> <code>@app/Models/Review.php</code>, <code>@app/Models/Category.php</code>, правила для моделей.</p>
+                    <pre><code>"Создай Eloquent модель 'Product' для Laravel 11 с полями:
+- id (ulid, primary)
+- name (string, 255, not null)
+- slug (string, 255, unique, not null)
+- description (text, nullable)
+- price (decimal, 10, 2, not null)
+- stock_quantity (integer, unsigned, default 0)
+- is_active (boolean, default true)
+Включи типажи HasFactory и SoftDeletes.
+Определи следующие отношения:
+- `categories()`: многие-ко-многим с моделью `Category` (предположи, что модель `Category` существует или создай ее базовый вариант).
+- `reviews()`: один-ко-многим с моделью `Review` (предположи, что модель `Review` существует или создай ее базовый вариант).
+Сгенерируй соответствующий файл миграции.
+Убедись, что в модели `$fillable` определен корректно.
+Следуй правилам из @eloquent-model-guidelines.mdc."</code><button class="copy-btn">Копировать</button></pre>
+                    <p><strong>Необходимый контекст:</strong> <code>@eloquent-model-guidelines.mdc</code> (если есть), возможно <code>@app/Models/Category.php</code> и <code>@app/Models/Review.php</code> (если уже существуют).</p>
                 </div>
 
                 <div class="collapsible-header">
-                    <span>Создание правил валидации Form Request</span>
+                    <span>Создание Form Request для валидации</span>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="collapsible-content">
                      <p><strong>Промпт:</strong></p>
-                    <pre><code>"Создай Form Request 'StoreBlogPostRequest'. Валидируй 'title' (required, string, max:255, unique:posts), 'body' (required, string, min:50), 'tags' (array, min:1, каждый элемент существует в таблице 'tags'). Авторизация для вошедшего пользователя."</code><button class="copy-btn">Копировать</button></pre>
+                    <pre><code>"Создай Form Request с именем `StoreProductRequest` для Laravel 11.
+Он должен валидировать следующие поля для создания нового продукта:
+- `name`: обязательно, строка, максимум 255 символов.
+- `category_id`: обязательно, существует в таблице `categories` в колонке `id`.
+- `price`: обязательно, число, минимальное значение 0.01.
+- `description`: опционально, строка.
+- `tags`: опционально, массив, каждый элемент в массиве должен быть строкой.
+Метод `authorize()` должен возвращать `true` (предположим, авторизация обрабатывается отдельно).
+Убедись, что сообщения об ошибках валидации кастомизированы и удобны для пользователя (на русском языке, если возможно)."</code><button class="copy-btn">Копировать</button></pre>
                 </div>
                 
                 <div class="collapsible-header">
-                    <span>Создание Blade компонентов</span>
+                    <span>Генерация CRUD контроллера с использованием сервисного слоя</span>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="collapsible-content">
                     <p><strong>Промпт:</strong></p>
-                    <pre><code>"Сгенерируй Blade компонент 'alert'. Свойство 'type' (info, success, warning, danger). Используй Tailwind CSS. Слот по умолчанию для сообщения и именованный слот 'title'."</code><button class="copy-btn">Копировать</button></pre>
+                    <pre><code>"Сгенерируй `ProductController` для Laravel 11 с полными CRUD операциями (index, create, store, show, edit, update, destroy) для модели `Product`.
+Контроллер должен использовать `ProductService` для всей бизнес-логики (предположи, что `ProductService` будет создан или уже существует и имеет соответствующие методы: `getAllProducts`, `createProduct`, `getProductById`, `updateProduct`, `deleteProduct`).
+Внедряй `ProductService` через конструктор.
+Для `store` и `update` используй `StoreProductRequest` и `UpdateProductRequest` соответственно для валидации (предположи, что они существуют).
+Методы `store`, `update`, `destroy` должны возвращать JSON-ответы, подходящие для API (например, с сообщением об успехе и данными созданного/обновленного ресурса, или статус 204 для удаления).
+Метод `index` должен поддерживать пагинацию.
+Метод `show` должен использовать явную привязку модели (`Product $product`).
+Следуй правилам из @controller-guidelines.mdc."</code><button class="copy-btn">Копировать</button></pre>
+                     <p><strong>Необходимый контекст:</strong> <code>@controller-guidelines.mdc</code>, <code>@app/Models/Product.php</code>, возможно <code>@app/Http/Requests/StoreProductRequest.php</code>, <code>@app/Http/Requests/UpdateProductRequest.php</code>, <code>@app/Services/ProductService.php</code>.</p>
                 </div>
 
                 <div class="collapsible-header">
-                    <span>Написание Pest тестов</span>
+                    <span>Написание PestPHP тестов для контроллера</span>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="collapsible-content">
                     <p><strong>Промпт:</strong></p>
-                    <pre><code>"Сгенерируй PestPHP feature тесты для 'store' в ProductController. Протестируй успешное создание, ошибки валидации и неавторизованный доступ."</code><button class="copy-btn">Копировать</button></pre>
-                    <p><strong>Контекст:</strong> <code>@app/Http/Controllers/ProductController.php</code>, релевантные модели, реквесты, маршруты, фабрики.</p>
+                    <pre><code>"Напиши PestPHP feature тесты для метода `store` в `ProductController` (@app/Http/Controllers/ProductController.php).
+Тесты должны покрывать следующие сценарии:
+1. Успешное создание продукта с корректными данными (статус 201, проверка структуры JSON ответа).
+2. Ошибка валидации при отсутствии обязательного поля `name` (статус 422, проверка сообщения об ошибке).
+3. Ошибка валидации при некорректном `price` (например, отрицательное значение).
+4. Попытка создания продукта неавторизованным пользователем (если применимо, статус 401 или 403).
+Используй фабрику для модели `Product` для генерации тестовых данных.
+Мокай `ProductService`, чтобы избежать реальных вызовов к сервису, и проверяй, что его метод `createProduct` вызывается с правильными аргументами.
+Следуй правилам из @pest-testing-guidelines.mdc."</code><button class="copy-btn">Копировать</button></pre>
+                    <p><strong>Необходимый контекст:</strong> <code>@app/Http/Controllers/ProductController.php</code>, <code>@app/Models/Product.php</code>, <code>@database/factories/ProductFactory.php</code>, <code>@app/Services/ProductService.php</code>, <code>@pest-testing-guidelines.mdc</code>.</p>
                 </div>
 
-                <h3>5.2. Использование Agent Mode для сложных изменений</h3>
-                <p>Режим Agent (Composer) предназначен для сложных, многофайловых задач. Он может автоматически находить контекст, выполнять команды, создавать/изменять файлы, исправлять ошибки.</p>
-                <p><strong>Рабочий процесс "Scaffold -> Plan -> Execute -> Monitor":</strong></p>
+                <h3>5.2. Использование различных AI-функций в синергии</h3>
+                <p>Эффективная разработка с AI в Cursor часто включает комбинирование его различных функций:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Agent Mode (Cmd+I / Ctrl+I):</strong> Для комплексных задач, затрагивающих несколько файлов (например, "Создай новую фичу X, включая модели, миграции, контроллеры, сервисы, маршруты и базовые тесты"). Agent может автоматически находить контекст, выполнять команды терминала (с подтверждением) и итерировать для исправления ошибок.</li>
+                    <li><strong>Cmd+K (Встроенное редактирование/генерация):</strong> Для точечной генерации или рефакторинга кода внутри одного файла (например, "Добавь PHPDoc к этому методу", "Рефактори этот цикл, используя методы коллекций Laravel").</li>
+                    <li><strong>Chat (Cmd+L / Ctrl+L):</strong> Для обсуждения кода, получения объяснений, отладки ошибок, генерации идей или планирования ("Объясни, как работает этот трейт", "Предложи варианты оптимизации этого Eloquent запроса", "Каковы шаги для интеграции этого стороннего API?").</li>
+                    <li><strong>Автодополнение Tab:</strong> Постоянно используется для ускорения написания кода, предлагая многострочные варианты на основе окружающего контекста.</li>
+                </ul>
+                <p><strong>Пример рабочего процесса "Scaffold -> Plan -> Execute -> Monitor" (для сложных фич с Agent):</strong></p>
                 <ol class="list-decimal list-inside ml-4">
-                    <li><strong>Scaffold (Каркас):</strong> Вручную создайте базовые структуры (модели, контроллеры через Artisan).</li>
-                    <li><strong>Plan (План):</strong>
-                        <ul class="list-disc list-inside ml-4">
-                            <li>Соберите полный контекст проекта (FileForge/RepoMix).</li>
-                            <li>Инструктируйте мощный внешний AI (например, Gemini 2.5 Pro) с этим контекстом для создания пошагового плана. Включите специфику Laravel (например, "Всегда используй `herd php artisan...`", "Модели используют ULID и SoftDeletes").</li>
-                        </ul>
-                    </li>
-                    <li><strong>Execute (Выполнение):</strong> Скопируйте план в Cursor Agent (<code>Cmd+N</code>, затем <code>Cmd+I</code>), включив auto-run.</li>
+                    <li><strong>Scaffold (Каркас):</strong> Иногда полезно вручную создать базовые структуры через Artisan (<code>php artisan make:model X -mfs</code>), чтобы дать AI отправную точку.</li>
+                    <li><strong>Plan (План):</strong> Сформулируйте четкий и подробный промпт для Agent, описывающий всю задачу. Можно попросить Agent сначала составить план действий.</li>
+                    <li><strong>Execute (Выполнение):</strong> Запустите Agent. Внимательно следите за его действиями, особенно если включен auto-run для команд терминала.</li>
+                    <li><strong>Monitor & Refine (Мониторинг и Доработка):</strong> Проверяйте сгенерированный код. Используйте Cmd+K и Chat для доработки, исправления мелких ошибок или уточнения деталей, которые Agent мог упустить.</li>
                 </ol>
 
-                <h3>5.3. Интеграция линтеров: PHPStan (Larastan) и Psalm</h3>
-                <p>Статический анализ помогает выявлять ошибки до выполнения. Cursor интегрируется с PHPStan и Psalm через расширения VS Code.</p>
+                <h3>5.3. Интеграция линтеров и статического анализа</h3>
+                <p>Инструменты статического анализа, такие как PHPStan (с Larastan для специфики Laravel) и Psalm, помогают выявлять ошибки до выполнения. Cursor интегрируется с ними через расширения VS Code.</p>
                 <ul class="list-disc list-inside ml-4">
-                    <li><strong>PHPStan (с Larastan):</strong> Установите <code>larastan/larastan</code> и расширение PHPStan для VS Code. Настройте <code>phpstan.neon</code>.</li>
-                    <li><strong>Psalm:</strong> Установите <code>vimeo/psalm</code>, инициализируйте (<code>./vendor/bin/psalm --init</code>), установите расширение Psalm.</li>
+                    <li><strong>Настройка:</strong> Установите соответствующие пакеты (<code>larastan/larastan</code>, <code>vimeo/psalm</code>) через Composer и настройте их конфигурационные файлы (<code>phpstan.neon</code>, <code>psalm.xml</code>). Установите расширения PHPStan и Psalm для VS Code/Cursor.</li>
+                    <li><strong>Взаимодействие AI с линтерами:</strong>
+                        <ul>
+                            <li>Используйте <code>@LintErrors</code> в чате, чтобы AI помог исправить ошибки, найденные линтером.</li>
+                            <li>Agent Mode может автоматически пытаться исправлять ошибки линтинга.</li>
+                            <li>Промпты типа: <code>"@app/MyClass.php PHPStan сообщает: [текст ошибки]. Помоги исправить."</code></li>
+                        </ul>
+                    </li>
                 </ul>
-                <p><strong>Взаимодействие AI с линтерами:</strong> Используйте <code>@Lint Errors</code>, Agent Mode для авто-исправления, или промпты типа: <code>"@app/MyClass.php PHPStan сообщает: [ошибка]. Исправь."</code></p>
 
                 <h3>5.4. Роль `laravel-ide-helper` в работе с AI</h3>
-                <p>Пакет <code>barryvdh/laravel-ide-helper</code> генерирует PHPDoc для "магических" частей Laravel. Это критически важно для AI, так как улучшает понимание кода и снижает "галлюцинации".</p>
-                <p><strong>Установка:</strong> <code>composer require --dev barryvdh/laravel-ide-helper</code></p>
-                <p><strong>Генерация:</strong></p>
+                <p>Пакет <code>barryvdh/laravel-ide-helper</code> генерирует PHPDoc для "магических" частей Laravel (фасады, отношения Eloquent и т.д.). Это критически важно для AI, так как:</p>
                 <ul class="list-disc list-inside ml-4">
-                    <li><code>php artisan ide-helper:generate</code> (фасады)</li>
-                    <li><code>php artisan ide-helper:models</code> (модели)</li>
-                    <li><code>php artisan ide-helper:meta</code> (мета-файл)</li>
+                    <li>Улучшает понимание структуры вашего кода AI-моделями.</li>
+                    <li>Повышает точность автодополнения и генерации кода.</li>
+                    <li>Снижает вероятность "галлюцинаций" AI относительно несуществующих методов или свойств.</li>
                 </ul>
-                <p>Наличие актуальных файлов от `laravel-ide-helper` повышает точность AI.</p>
+                <p><strong>Установка:</strong> <code>composer require --dev barryvdh/laravel-ide-helper</code></p>
+                <p><strong>Регулярно генерируйте хелперы:</strong></p>
+                <pre><code>php artisan ide-helper:generate
+php artisan ide-helper:models -W # -W для записи напрямую в файлы моделей
+php artisan ide-helper:meta</code><button class="copy-btn">Копировать</button></pre>
+                <p>Наличие актуальных файлов от `laravel-ide-helper` значительно повышает точность и полезность AI в вашем Laravel-проекте.</p>
             </section>
 
-            <section id="workflow" class="content-section">
-                <h2>6. Продвинутые улучшения рабочего процесса и повышение производительности</h2>
-                <p>Этот раздел охватывает горячие клавиши, комбинацию с внешними инструментами, практические советы и выбор LLM для максимальной производительности.</p>
+            <section id="mcp-servers" class="content-section">
+                <h2>6. Расширение Cursor с помощью MCP-серверов (Model Context Protocol)</h2>
+                <p>Model Context Protocol (MCP) стандартизирует взаимодействие AI-приложений с внешними источниками данных и инструментами. MCP-серверы расширяют возможности Cursor, позволяя AI подключаться к базам данных, API, актуальной документации, выполнять команды и многое другое, что особенно ценно для Laravel-разработки.</p>
 
-                <h3>6.1. Основные горячие клавиши Cursor для AI-функций</h3>
+                <h3>6.1. Что такое MCP-серверы и их значение для Laravel</h3>
+                <p>MCP-серверы позволяют AI в Cursor:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Запрашивать базы данных напрямую (например, для получения схемы или данных).</li>
+                    <li>Взаимодействовать с внешними сервисами (Jira, Stripe, GitHub Issues).</li>
+                    <li>Использовать актуальную, версионную документацию (например, через Context7).</li>
+                    <li>Интегрироваться со специфичными для Laravel инструментами (выполнять Artisan-команды, анализировать логи).</li>
+                    <li>Создавать "общую память" между различными AI-инструментами (OpenMemory MCP).</li>
+                </ul>
+                <p>Это превращает Cursor из просто умного редактора в более активного "агента" в рабочем процессе.</p>
+
+                <h3>6.2. Настройка MCP-серверов в Cursor</h3>
+                <p>MCP-серверы настраиваются через JSON-файлы или интерфейс Cursor:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Глобально:</strong> В файле <code>~/.cursor/mcp.json</code> (путь может отличаться в зависимости от ОС).</li>
+                    <li><strong>Для конкретного проекта:</strong> В файле <code>.cursor/mcp.json</code> в корне проекта.</li>
+                    <li><strong>Через интерфейс:</strong> Settings > Features > MCP > Add New MCP Server.</li>
+                </ul>
+                <p>Базовая структура <code>mcp.json</code> для сервера, работающего через stdio:</p>
+                <pre><code class="language-json">{
+  "mcpServers": {
+    "имя-вашего-сервера": { 
+      "command": "путь/к/команде/или/скрипту", // Например, "npx", "python", "/usr/local/bin/my-mcp-server"
+      "args": ["аргумент1", "аргумент2"],    // Аргументы для команды
+      "env": { "API_KEY_FOR_MCP": "ваш_api_ключ_для_этого_mcp" }, // Переменные окружения для MCP-сервера
+      "cwd": "${workspaceFolder}" // Рабочая директория (опционально)
+    }
+  }
+}</code><button class="copy-btn">Копировать</button></pre>
+                <p>Для серверов через SSE указывается URL эндпоинта.</p>
+
+                <h3>6.3. Ключевые MCP-серверы для PHP/Laravel</h3>
+
+                <div class="collapsible-header">
+                    <span>6.3.1. Context7: Актуальная документация</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Context7 предоставляет AI доступ к свежей, версионной документации для Laravel и других библиотек, решая проблему устаревших знаний LLM.</p>
+                    <p><strong>Настройка (пример):</strong></p>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li>Требуется Node.js v18.0.0+.</li>
+                        <li>Добавьте в <code>mcp.json</code>:</li>
+                    </ol>
+                    <pre><code class="language-json">{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+      // "env": { "CONTEXT7_API_KEY": "ВАШ_CONTEXT7_API_KEY" } // Если требуется API ключ
+    }
+  }
+}</code><button class="copy-btn">Копировать</button></pre>
+                    <ol start="3" class="list-decimal list-inside ml-4">
+                        <li>Перезапустите Cursor.</li>
+                    </ol>
+                    <p><strong>Использование:</strong> Добавьте <code>use context7</code> к запросу. Пример: <code>"Как настроить event broadcasting в Laravel 11? use context7"</code>. Cursor подгрузит актуальную документацию в контекст.</p>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>6.3.2. jsonallen/laravel-mcp (Laravel Helper Tools)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Этот MCP-сервер специально разработан для улучшения разработки и отладки Laravel-проектов в Cursor.</p>
+                    <p><strong>Возможности:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><code>tail_log_file</code>: Просмотр последних записей в лог-файле Laravel.</li>
+                        <li><code>search_log_errors</code>: Поиск ошибок в логах по шаблонам.</li>
+                        <li><code>run_artisan_command</code>: Выполнение команд Laravel Artisan.</li>
+                        <li><code>show_model</code>: (Потенциально) Отображение информации о модели и ее связях.</li>
+                    </ul>
+                    <p><strong>Настройка (упрощенный пример, детали см. в документации пакета):</strong></p>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li>Клонируйте репозиторий <code>jsonallen/laravel-mcp</code>.</li>
+                        <li>Настройте Python окружение с UV (или Poetry/pip).</li>
+                        <li>Создайте скрипт-обертку для запуска сервера (например, <code>run-laravel-mcp.sh</code>), указывающий путь к вашему Laravel проекту и команду запуска Python-скрипта сервера.</li>
+                        <li>Добавьте этот скрипт как команду в <code>mcp.json</code>.</li>
+                    </ol>
+                    <pre><code class="language-bash"># Пример run-laravel-mcp.sh
+#!/bin/bash
+export LARAVEL_PATH="/path/to/your/laravel/project"
+# Команда запуска Python сервера из клонированного репозитория jsonallen/laravel-mcp
+# Например: python /path/to/cloned/laravel-mcp/server.py
+# Или с UV: uv run -- /path/to/cloned/laravel-mcp/server.py
+# Точная команда зависит от структуры пакета jsonallen/laravel-mcp
+echo "Starting Laravel MCP Helper..."
+# Замените на актуальную команду запуска
+python3 /path/to/jsonallen/laravel-mcp/server.py </code><button class="copy-btn">Копировать</button></pre>
+                    <p><strong>Использование:</strong> <code>"@LaravelHelperTools Выполни php artisan cache:clear"</code> (имя сервера зависит от вашей конфигурации).</p>
+                    <div class="alert-warning"><p>Пакет может находиться в стадии альфа-тестирования, API и функциональность могут изменяться.</p></div>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>6.3.3. php-mcp/laravel: Превратите ваше Laravel-приложение в MCP-сервер</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Библиотека <code>php-mcp/laravel</code> позволяет вашему собственному Laravel-приложению выступать в роли MCP-сервера. Это дает возможность создавать кастомные инструменты и ресурсы, доступные для AI.</p>
+                    <p><strong>Установка:</strong> Через Composer в ваш Laravel проект.</p>
+                    <p><strong>Настройка:</strong> Регистрирует команду <code>php artisan mcp:serve</code>. В <code>mcp.json</code> Cursor настраивается вызов этой команды:</p>
+                    <pre><code class="language-json">{
+  "mcpServers": {
+    "my-laravel-app-mcp": {
+      "command": "php",
+      "args": [
+        "/full/path/to/your/laravel/project/artisan",
+        "mcp:serve"
+      ],
+      "cwd": "/full/path/to/your/laravel/project/"
+    }
+  }
+}</code><button class="copy-btn">Копировать</button></pre>
+                    <p>Это позволяет определять собственные <code>MCPTool</code> и <code>MCPResource</code> классы в вашем Laravel-приложении с помощью PHP-атрибутов, которые будут доступны для Cursor.</p>
+                </div>
+                
+                <div class="collapsible-header">
+                    <span>6.3.4. usecroft/croft-laravel: Еще один MCP-сервер для Laravel</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Croft также является MCP-сервером, ориентированным на Laravel. Устанавливается в проект и добавляет команду <code>artisan croft</code>.</p>
+                     <p><strong>Настройка в <code>.cursor/mcp.json</code> (пример):</strong></p>
+                     <pre><code class="language-json">{
+  "mcpServers": {
+    "croft": {
+      "command": "./artisan", // или php artisan
+      "args": ["croft"],
+      "cwd": "${workspaceFolder}" // Убедитесь, что это корень вашего Laravel проекта
+    }
+  }
+}</code><button class="copy-btn">Копировать</button></pre>
+                    <p>Croft предоставляет утилиты для получения информации о проекте (миграции, маршруты, БД, логи).</p>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>6.3.5. OpenMemory MCP от mem0.ai: Общая память для AI-инструментов</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>OpenMemory MCP решает проблему отсутствия общей "памяти" между различными AI-инструментами и сессиями (Cursor, Claude, и т.д.). Он создает единое локальное хранилище "воспоминаний", делая взаимодействия с AI более персонализированными и контекстно-осведомленными.</p>
+                    <p><strong>Ключевые особенности:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>Единое хранилище:</strong> Сохраняет информацию из MCP-плагинов и сеансов.</li>
+                        <li><strong>Кросс-инструментальная память:</strong> Cursor может "вспомнить" диалог с Claude.</li>
+                        <li><strong>Локальность и безопасность:</strong> Данные хранятся на вашем ПК, доступ контролируется пользователем.</li>
+                        <li><strong>Управление памятью:</strong> Добавление, удаление, поиск воспоминаний с метаданными (темы, эмоции).</li>
+                        <li><strong>Персонализация AI:</strong> AI запоминает ваш стиль, предпочтения, контекст проекта.</li>
+                    </ul>
+                    <p><strong>Интеграция с Cursor (общая схема):</strong></p>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li>Установите Cursor IDE, Python (>=3.8), Git.</li>
+                        <li>Клонируйте репозиторий <code>mem0ai/mem0</code> (ветка `main/openmemory` или актуальная) и выполните настройку согласно его README (обычно включает установку зависимостей).</li>
+                        <li>Запустите локальный сервер OpenMemory MCP (команда будет в документации `mem0`).</li>
+                        <li>В Cursor (Settings > Features > MCP Servers > Add new MCP server):
+                            <ul>
+                                <li>Имя сервера: например, `openmemory`</li>
+                                <li>Тип: `sse` (Server-Sent Events) или `stdio` в зависимости от реализации сервера `mem0`.</li>
+                                <li>Команда/URL: Укажите команду для запуска локального сервера OpenMemory или его URL (например, `http://localhost:PORT_NUMBER`).</li>
+                            </ul>
+                        </li>
+                        <li>Сохраните и перезапустите Cursor.</li>
+                    </ol>
+                    <p><strong>Что можно хранить:</strong> Фрагменты кода, версии фреймворков, документацию, лучшие практики.</p>
+                    <p>OpenMemory MCP предлагает значительный шаг к более интеллектуальному и последовательному взаимодействию с AI.</p>
+                </div>
+
+                <h3>6.4. Использование MCP-инструментов и ограничения</h3>
+                <p>AI в Cursor автоматически пытается использовать релевантные MCP-инструменты. Можно также указать явно: <code>"Используй &lt;имя_инструмента_из_mcp&gt; для..."</code>.</p>
+                <p><strong>Ограничения:</strong> Экосистема MCP все еще развивается. Могут быть ограничения на количество одновременно активных инструментов, проблемы с удаленной разработкой или неполная поддержка всех функций протокола MCP.</p>
+            </section>
+
+            <section id="debugging" class="content-section">
+                <h2>7. Отладка PHP и Laravel Приложений в Cursor с Xdebug</h2>
+                <p>Отладка — неотъемлемая часть разработки. Cursor предлагает как AI-ассистированные подходы, так и традиционные методы с использованием Xdebug. Эти подходы дополняют друг друга.</p>
+
+                <h3>7.1. Использование AI Cursor для отладки</h3>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Режим Agent:</strong> Может обнаруживать ошибки линтинга и автоматически применять исправления.</li>
+                    <li><strong>Чат (Cmd+L / Ctrl+L):</strong> Задайте вопрос "Есть ли здесь ошибка?" или попросите AI объяснить сообщение об ошибке Laravel (вставьте стектрейс).</li>
+                    <li><strong>Cmd+K/Ctrl+K:</strong> Выделите ошибочный код и попросите AI исправить его или добавить отладочные операторы (например, <code>Log::info()</code>).</li>
+                </ul>
+
+                <h3>7.2. Традиционная отладка с Xdebug</h3>
+                <p>Для глубокой отладки PHP-кода Cursor, как и VS Code, полагается на Xdebug. Основная сложность заключается в начальной настройке.</p>
+
+                <div class="collapsible-header">
+                    <span>7.2.1. Установка Xdebug и конфигурация PHP</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong>Установка расширения Xdebug:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Используйте PECL (<code>pecl install xdebug</code>), Homebrew (<code>brew install phpXX-xdebug</code> для macOS), менеджеры пакетов Linux (<code>sudo apt install phpX.Y-xdebug</code>) или загрузите DLL для Windows с <a href="https://xdebug.org/wizard" target="_blank" class="text-sky-600 hover:underline">Xdebug Wizard</a>.</li>
+                    </ul>
+                    <p><strong>Конфигурация <code>php.ini</code>:</strong></p>
+                    <p>Найдите ваш <code>php.ini</code> (<code>php --ini</code> или <code>phpinfo()</code>). Добавьте/измените (для Xdebug 3.x рекомендуется):</p>
+                    <pre><code class="language-ini">zend_extension=xdebug ; Путь может быть полным, например zend_extension=/usr/lib/php/20210902/xdebug.so
+xdebug.mode=debug
+xdebug.start_with_request=yes ; или 'trigger' для ручного запуска
+xdebug.client_host=127.0.0.1
+xdebug.client_port=9003 ; Стандартный порт для Xdebug 3
+; xdebug.log="/tmp/xdebug.log" ; Опционально, для логов Xdebug (убедитесь, что у PHP есть права на запись)
+; xdebug.discover_client_host=true ; Если client_host не 127.0.0.1, например в Docker</code><button class="copy-btn">Копировать</button></pre>
+                    <p>Для Xdebug 2.x (устаревшая):</p>
+                    <pre><code class="language-ini">zend_extension=xdebug
+xdebug.remote_enable=1
+xdebug.remote_autostart=1
+xdebug.remote_port=9000 ; Стандартный порт для Xdebug 2</code><button class="copy-btn">Копировать</button></pre>
+                    <p><strong>Перезагрузка веб-сервера:</strong> Apache/Nginx и PHP-FPM (если используется).</p>
+                    <p><strong>Проверка:</strong> Создайте файл с <code>&lt;?php phpinfo(); ?&gt;</code> и убедитесь, что секция Xdebug присутствует и активна.</p>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>7.2.2. Конфигурация `launch.json` в Cursor для Xdebug</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Убедитесь, что установлено расширение "PHP Debug" (от Xdebug Team, ранее Felix Becker).</p>
+                    <p>В проекте перейдите на вкладку "Run and Debug" (значок жука), нажмите на значок шестеренки и выберите "PHP". Это создаст/откроет <code>.vscode/launch.json</code>.</p>
+                    <p><strong>Основная конфигурация "Listen for Xdebug":</strong></p>
+                    <pre><code class="language-json">{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003, // Должен совпадать с xdebug.client_port
+            "pathMappings": { // КРИТИЧЕСКИ ВАЖНО для Docker/Sail/VM
+                // Пример для Laravel Sail:
+                // "/var/www/html": "${workspaceFolder}"
+                // Ключ - это путь ВНУТРИ контейнера/VM к корню проекта
+                // Значение - это путь к корню проекта на ВАШЕЙ машине
+            },
+            "log": false // Можно установить true для отладки самого Xdebug соединения
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9003,
+            "pathMappings": { 
+                // Аналогично, если скрипт запускается в Docker/VM
+                // "/var/www/html": "${workspaceFolder}" 
+            }
+        }
+        // Другие конфигурации, например, для запуска тестов PHPUnit
+    ]
+}</code><button class="copy-btn">Копировать</button></pre>
+                    <p><strong><code>pathMappings</code>:</strong> Сопоставляет пути на сервере/в контейнере с путями в локальной рабочей области. Без правильного <code>pathMappings</code> отладчик не сможет найти исходные файлы при работе с Docker (Laravel Sail), Vagrant или удаленными серверами.</p>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>7.2.3. Процесс отладки</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>Установка точек останова (breakpoints):</strong> Кликните на полях слева от номеров строк (или F9).</li>
+                        <li><strong>Запуск отладки:</strong> F5 или выберите конфигурацию на панели "Run and Debug" и нажмите "Play".</li>
+                        <li><strong>Управление выполнением:</strong> F5 (Continue), F10 (Step Over), F11 (Step Into), Shift+F11 (Step Out).</li>
+                        <li><strong>Инспекция переменных и стека вызовов:</strong> На панелях "Variables" и "Call Stack".</li>
+                    </ul>
+                </div>
+
+                <div class="collapsible-header">
+                    <span>7.2.4. Отладка Artisan-команд и тестов PHPUnit</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong>Artisan-команды:</strong></p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Можно использовать конфигурацию "Launch currently open script", если открыт файл <code>artisan</code>.</li>
+                        <li>Надежнее создать специальную конфигурацию в <code>launch.json</code>.</li>
+                        <li>Если <code>xdebug.start_with_request=trigger</code>, может потребоваться установить переменную окружения перед запуском команды из терминала: <code>export XDEBUG_TRIGGER=1</code> или <code>export XDEBUG_CONFIG="idekey=VSCODE"</code>.</li>
+                    </ul>
+                    <p><strong>PHPUnit тесты:</strong></p>
+                     <ul class="list-disc list-inside ml-4">
+                        <li>Убедитесь, что Xdebug настроен для CLI.</li>
+                        <li>Установите точки останова.</li>
+                        <li>Запустите PHPUnit из терминала (<code>./vendor/bin/phpunit --filter YourTestClass</code>). Xdebug должен подключиться автоматически (если <code>start_with_request=yes</code>) или потребуется триггер.</li>
+                        <li>Можно создать конфигурацию в <code>launch.json</code> для запуска PHPUnit.</li>
+                    </ul>
+                    <p>Для проверки соединения Xdebug создайте простой PHP-файл с <code>&lt;?php xdebug_break(); echo 'Xdebug test'; ?&gt;</code> и попробуйте его отладить.</p>
+                </div>
+            </section>
+
+            <section id="laravel-ecosystem" class="content-section">
+                <h2>8. Интеграция с Экосистемой Laravel (Composer, Artisan, Sail/Herd)</h2>
+                <p>Cursor эффективно интегрируется с ключевыми инструментами экосистемы Laravel, в основном через встроенный терминал, усиленный AI-возможностями.</p>
+
+                <h3>8.1. Интеграция с Composer</h3>
+                <p>Управление зависимостями PHP через Composer осуществляется в терминале Cursor.</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Ручное управление:</strong> <code>composer require vendor/package</code>, <code>composer update</code>, <code>composer install</code>.</li>
+                    <li><strong>AI-ассистирование (Agent Mode или Cmd+K в терминале):</strong> "Установи пакет spatie/laravel-medialibrary и сконфигурируй его сервис-провайдер." Cursor попытается выполнить команду и внести изменения в конфигурационные файлы.</li>
+                </ul>
+
+                <h3>8.2. Выполнение команд Artisan</h3>
+                <p>Artisan, командная строка Laravel, используется через терминал Cursor.</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Ручное выполнение:</strong> <code>php artisan make:controller MyController</code>, <code>php artisan migrate</code>.</li>
+                    <li><strong>AI-ассистирование:</strong>
+                        <ul>
+                            <li><strong>Agent Mode:</strong> "Сгенерируй новую политику для модели Post и зарегистрируй ее."</li>
+                            <li><strong>Cmd+K в терминале:</strong> "создай новую модель Product с миграцией" -> AI предложит <code>php artisan make:model Product -m</code>.</li>
+                            <li><strong>MCP Серверы:</strong> Некоторые MCP (например, jsonallen/laravel-helper-tools) могут предоставлять интерфейс для выполнения Artisan-команд.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>8.3. Интеграция с Laravel Sail и Herd</h3>
+                <p>Инструменты управления окружением, такие как Laravel Sail и Herd, упрощают настройку локальной среды, что положительно сказывается на работе с Cursor, особенно при отладке.</p>
+                <div class="collapsible-header">
+                    <span>8.3.1. Laravel Sail</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Laravel Sail предоставляет легковесную среду разработки Docker.</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>Управление через терминал:</strong> Все команды Sail (<code>./vendor/bin/sail up</code>, <code>./vendor/bin/sail artisan migrate</code>) выполняются в терминале Cursor.</li>
+                        <li><strong>Расширение "Laravel Sail":</strong> Рекомендуется установить расширение от shreifelagamy. Оно предоставляет панель для управления сервисами Sail, доступа к оболочке контейнера, Tinker, логам.</li>
+                        <li><strong>Отладка с Xdebug:</strong> Требует корректной настройки <code>pathMappings</code> в <code>launch.json</code> (см. раздел Отладка).</li>
+                    </ul>
+                </div>
+                <div class="collapsible-header">
+                    <span>8.3.2. Laravel Herd (macOS и Windows)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-content">
+                    <p>Laravel Herd — нативная среда разработки, упрощающая управление PHP, Nginx/Caddy, DnsMasq.</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li><strong>Распознавание IDE:</strong> Herd распознает Cursor.</li>
+                        <li><strong>Команда `herd edit`:</strong> Может открыть текущий проект в Cursor.</li>
+                        <li><strong>Интеграция с Dump UI:</strong> Клик по местоположению дампа в Herd Dump UI может открыть файл и строку в Cursor.</li>
+                        <li><strong>Xdebug:</strong> Herd часто автоматически настраивает Xdebug, упрощая его использование.</li>
+                    </ul>
+                </div>
+                <p>Использование Sail или Herd рекомендуется, так как они стандартизируют и упрощают настройку окружения.</p>
+            </section>
+
+            <section id="tips-tricks" class="content-section">
+                <h2>9. Советы, Трюки и Лучшие Практики</h2>
+                <p>Эффективное использование Cursor — это сочетание знания его функций и умения правильно взаимодействовать с AI. Подход "человек-в-цикле" (human-in-the-loop) остается ключевым.</p>
+
+                <h3>9.1. Общие советы по использованию Cursor</h3>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Палитра команд (<code>Ctrl/⌘ + Shift + P</code>):</strong> Ваш главный инструмент для доступа ко всем функциям.</li>
+                    <li><strong>Настройте <code>settings.json</code>:</strong> Оптимизируйте рабочее пространство под свои предпочтения.</li>
+                    <li><strong>"YOLO mode" (Agent):</strong> Мощный режим, когда Agent автоматически исправляет ошибки. Используйте с осторожностью и частыми коммитами в Git.</li>
+                    <li><strong>Частые коммиты в Git:</strong> Особенно при работе с AI-агентом, чтобы легко отслеживать и отменять изменения.</li>
+                    <li><strong>Итеративный подход:</strong> Генерируйте код -> проверяйте diff -> просите AI исправить/доработать.</li>
+                </ul>
+
+                <h3>9.2. Советы по работе с Laravel в Cursor</h3>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>Промптинг:</strong> Будьте конкретны (версии Laravel, пакеты). Используйте <code>@CursorRules</code>. Разбивайте большие задачи.</li>
+                    <li><strong>Контекст:</strong> Активно используйте <code>@Files</code>, <code>@Folders</code>, <code>@Docs</code>. Для Laravel 11+ учитывайте изменения (например, отсутствие <code>app/Console/Kernel.php</code>).</li>
+                    <li><strong>Рабочие процессы:</strong> Комбинируйте Agent (для каркаса), Chat (для отладки/объяснений) и Cmd+K (для целевой генерации/редактирования).</li>
+                    <li><strong>Безопасность:</strong> Тщательно настройте <code>.cursorignore</code> для <code>.env</code> и других чувствительных файлов.</li>
+                </ul>
+
+                <h3>9.3. Полезные сочетания клавиш (помимо основных AI)</h3>
                 <div class="overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
-                                <th>Функция/Действие</th>
-                                <th>Ярлык (macOS)</th>
-                                <th>Ярлык (Windows/Linux)</th>
+                                <th>Действие</th>
+                                <th>Сочетание в Cursor (macOS / Windows)</th>
+                                <th>Аналог в PhpStorm (если применимо)</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Открыть Cmd-K (встроенное редактирование/генерация)</td>
-                                <td><code>⌘ + K</code></td>
-                                <td><code>Ctrl + K</code></td>
+                                <td>Палитра команд</td>
+                                <td><code>⌘ + Shift + P</code> / <code>Ctrl + Shift + P</code></td>
+                                <td><code>⌘ + Shift + A</code> / <code>Ctrl + Shift + A</code></td>
                             </tr>
                             <tr>
-                                <td>Открыть Чат / Добавить код в Чат</td>
-                                <td><code>⌘ + L</code></td>
-                                <td><code>Ctrl + L</code></td>
+                                <td>Быстрое исправление / Контекстные действия</td>
+                                <td><code>⌘ + .</code> / <code>Ctrl + .</code></td>
+                                <td><code>Alt + Enter</code></td>
                             </tr>
                             <tr>
-                                <td>Добавить выделение в Чат</td>
-                                <td><code>⌘ + Shift + L</code></td>
-                                <td><code>Ctrl + Shift + L</code></td>
+                                <td>Перейти к файлу</td>
+                                <td><code>⌘ + P</code> / <code>Ctrl + P</code></td>
+                                <td><code>⌘ + Shift + O</code> / <code>Ctrl + Shift + N</code> (к классу/файлу)</td>
+                            </tr>
+                            <tr>
+                                <td>Закомментировать/раскомментировать строку</td>
+                                <td><code>⌘ + /</code> / <code>Ctrl + /</code></td>
+                                <td><code>⌘ + /</code> / <code>Ctrl + /</code></td>
                             </tr>
                              <tr>
-                                <td>Открыть Agent/Composer</td>
-                                <td><code>⌘ + I</code></td>
-                                <td><code>Ctrl + I</code></td>
+                                <td>Форматировать документ</td>
+                                <td><code>Shift + Option + F</code> / <code>Shift + Alt + F</code></td>
+                                <td><code>⌘ + Option + L</code> / <code>Ctrl + Alt + L</code></td>
                             </tr>
                             <tr>
-                                <td>Новый Чат/Agent</td>
-                                <td><code>⌘ + N</code> или <code>⌘ + R</code></td>
-                                <td><code>Ctrl + N</code> или <code>Ctrl + R</code></td>
+                                <td>Найти использования (через Intelephense/GitLens)</td>
+                                <td>Зависит от расширения (часто <code>Shift + F12</code> для Intelephense)</td>
+                                <td><code>Alt + F7</code></td>
                             </tr>
-                            <tr>
-                                <td>Принять/Отклонить Tab-автодополнение</td>
-                                <td><code>Tab</code> / <code>Esc</code></td>
-                                <td><code>Tab</code> / <code>Esc</code></td>
+                             <tr>
+                                <td>Открыть терминал</td>
+                                <td><code>Ctrl + \`</code> / <code>Ctrl + \`</code> </td>
+                                <td><code>Option + F12</code> / <code>Alt + F12</code></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <p>Горячие клавиши можно переназначить в настройках.</p>
+                 <p>Полный список стандартных сочетаний VS Code (которые работают и в Cursor) можно найти в его документации или через <code>File > Preferences > Keyboard Shortcuts</code>.</p>
 
-                <h3>6.2. Комбинирование Cursor с внешними AI-инструментами</h3>
-                <p>Для сложных задач используйте мощные внешние AI (например, Gemini 2.5 Pro) для планирования, а затем выполняйте план в Cursor Agent. Это позволяет задействовать модели с большими контекстными окнами.</p>
-
-                <h3>6.3. Советы из практики пользователей Cursor/Laravel</h3>
+                <h3>9.4. Организация проекта для эффективной работы с AI</h3>
+                <p>Структурирование некоторой информации о проекте может помочь AI лучше его понимать:</p>
                 <ul class="list-disc list-inside ml-4">
-                    <li><strong>Относитесь к AI как к младшему разработчику:</strong> Проверяйте и направляйте.</li>
-                    <li><strong>Разбивайте задачи:</strong> Небольшие, сфокусированные задачи для AI.</li>
-                    <li><strong>Итеративная доработка:</strong> Генерируйте -> проверяйте diff -> просите исправить.</li>
-                    <li><strong>Контекст — это всё:</strong> Создавайте хорошие правила и предоставляйте точный контекст.</li>
-                    <li><strong>Сначала ручной каркас:</strong> Базовая структура через Artisan, затем AI.</li>
-                    <li><strong>Безопасность:</strong> Используйте <code>.cursorignore</code> для <code>.env</code> и др.</li>
-                    <li><strong>Управление расширениями:</strong> Убедитесь, что PHP/Laravel расширения работают корректно.</li>
+                    <li><strong><code>docs/</code> директория:</strong>
+                        <ul>
+                            <li><code>architecture.md</code>: Описание архитектуры вашего приложения.</li>
+                            <li><code>conventions.md</code>: Соглашения по стилю кода, специфичные для проекта (если не полностью покрыты <code>.cursor/rules</code>).</li>
+                            <li><code>api_documentation.md</code>: Описание вашего API.</li>
+                        </ul>
+                    </li>
+                    <li><strong><code>prompts/</code> директория:</strong>
+                        <ul>
+                            <li>Сохраняйте удачные и часто используемые промпты для типовых задач (рефакторинг, генерация тестов, создание CRUD).</li>
+                        </ul>
+                    </li>
                 </ul>
+                <p>На эти файлы можно ссылаться в чате через <code>@Files</code>.</p>
 
-                <h3>6.4. Выбор подходящей LLM-модели в Cursor</h3>
-                <p>Cursor поддерживает различные LLM (Claude, GPT, Gemini, Grok и др.). Они различаются по контекстному окну, возможностям и стоимости.</p>
-                <ul class="list-disc list-inside ml-4">
-                    <li><strong>Claude 3.5 Sonnet:</strong> Отличный универсал.</li>
-                    <li><strong>Gemini 2.5 Pro:</strong> Осторожный и точный.</li>
+                <h3>9.5. Ресурсы сообщества и поддержание актуальности знаний</h3>
+                 <ul class="list-disc list-inside ml-4">
+                    <li><strong>Официальная документация Cursor:</strong> <a href="https://docs.cursor.com" target="_blank" class="text-sky-600 hover:underline">docs.cursor.com</a></li>
+                    <li><strong>Форум сообщества Cursor:</strong> <a href="https://forum.cursor.com" target="_blank" class="text-sky-600 hover:underline">forum.cursor.com</a> - для обратной связи, отчетов об ошибках, обмена правилами.</li>
+                    <li><strong>Cursor Directory:</strong> <a href="https://cursor.directory" target="_blank" class="text-sky-600 hover:underline">cursor.directory</a> - для поиска готовых правил и MCP-серверов.</li>
+                    <li><strong>Reddit:</strong> r/laravel, r/ChatGPTCoding, r/PHP.</li>
+                    <li><strong>Блоги и YouTube каналы:</strong> LaravelDaily (Повилас Короп) часто публикует материалы о Cursor.</li>
                 </ul>
-                <p>Можно использовать OpenAI-совместимые API через "Override OpenAI Base URL" для доступа к другим моделям или локальным LLM. Экспериментируйте для нахождения лучшей модели для ваших задач.</p>
+                <p>Cursor и LLM быстро развиваются. Регулярно проверяйте обновления и участвуйте в жизни сообщества.</p>
             </section>
 
             <section id="conclusion" class="content-section">
-                <h2>7. Заключение: Повышение эффективности разработки на Laravel с помощью Cursor</h2>
-                <p>Cursor IDE — это значительный шаг вперед, особенно для PHP и Laravel разработчиков. Сочетание VS Code с AI открывает новые перспективы.</p>
-                <p><strong>Ключевые преимущества:</strong></p>
-                <ul class="list-disc list-inside ml-4">
-                    <li>Интеллектуальная помощь на каждом этапе.</li>
-                    <li>Глубокое понимание контекста проекта (правила, <code>@</code>, MCP).</li>
-                    <li>Настраиваемое поведение AI.</li>
-                    <li>Сокращение времени на разработку и обучение.</li>
-                </ul>
-                <p><strong>Итоговые рекомендации:</strong></p>
+                <h2>10. Заключение: Принимая Будущее AI-ассистированной Разработки на Laravel</h2>
+                <p>Cursor IDE предлагает мощный набор инструментов для разработчиков PHP и Laravel, сочетая знакомую среду VS Code с передовыми возможностями искусственного интеллекта. Его способность понимать контекст кодовой базы, генерировать код, помогать в рефакторинге и отладке может значительно повысить продуктивность и качество разработки.</p>
+                <p><strong>Ключ к успешному использованию Cursor лежит в:</strong></p>
                 <ol class="list-decimal list-inside ml-4">
-                    <li>Инвестируйте время в настройку.</li>
-                    <li>Освойте систему правил.</li>
-                    <li>Практикуйте промптинг.</li>
-                    <li>Воспринимайте AI как "младшего разработчика".</li>
-                    <li>Будьте в курсе обновлений.</li>
-                    <li>Приоритет безопасности (<code>.cursorignore</code>).</li>
+                    <li><strong>Тщательной настройке среды:</strong> Установка PHP-расширений, настройка интерпретатора и Xdebug, использование инструментов вроде Laravel Sail или Herd.</li>
+                    <li><strong>Эффективном использовании AI-функций:</strong> Освоение Tab-автодополнения, Cmd+K, Чата и режима Agent, а также мастерское применение <code>@</code>-символов для предоставления точного контекста.</li>
+                    <li><strong>Грамотной конфигурации проекта:</strong> Использование <code>.cursor/rules</code> для внедрения специфичных для Laravel лучших практик и <code>.cursorignore</code> для защиты конфиденциальных данных.</li>
+                    <li><strong>Интеграции с экосистемой Laravel:</strong> Эффективное применение Composer, Artisan и инструментов управления окружением.</li>
+                    <li><strong>Расширении возможностей через MCP-серверы:</strong> Использование существующих или создание кастомных MCP-серверов (включая инновации, такие как OpenMemory MCP) для взаимодействия AI с внешними системами и управления "памятью" AI.</li>
                 </ol>
-                <p>Cursor — это платформа для совместной работы человека и AI. Для разработчиков, готовых освоить новые инструменты, Cursor предлагает возможность значительно повысить эффективность и сосредоточиться на творческих задачах.</p>
+                <p>Cursor — это не волшебная палочка, а мощный помощник, требующий умелого управления. При правильной конфигурации и осмысленном применении он способен стать катализатором продуктивности и инноваций.</p>
+                <p>Поскольку AI-инструменты продолжают стремительно развиваться, разработчикам важно сохранять любознательность, экспериментировать и постоянно учиться. Принятие таких инструментов, как Cursor, — это шаг в новую эру разработки программного обеспечения, где сотрудничество человека и AI открывает новые горизонты эффективности и креативности.</p>
             </section>
         </main>
     </div>
@@ -844,8 +1439,7 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
         const navLinks = document.querySelectorAll('.nav-link');
         const contentSections = document.querySelectorAll('.content-section');
         const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
-        const copyButtons = document.querySelectorAll('.copy-btn');
-
+        
         function showSection(targetId) {
             contentSections.forEach(section => {
                 section.classList.remove('active');
@@ -855,14 +1449,17 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
                  targetElement.classList.add('active');
             }
 
-
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.dataset.target === targetId) {
                     link.classList.add('active');
                 }
             });
-            window.scrollTo(0, 0); 
+            // Scroll main content area to top, not the whole window
+            const mainContentArea = document.querySelector('main');
+            if (mainContentArea) {
+                mainContentArea.scrollTop = 0;
+            }
         }
 
         navLinks.forEach(link => {
@@ -885,54 +1482,40 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
             });
         });
 
-        function setupCopyButton(button, codeElementSelector, isPre = true) {
-            button.addEventListener('click', () => {
-                const parentElement = isPre ? button.parentElement : button.closest(codeElementSelector).parentElement;
-                const codeElement = parentElement.querySelector(isPre ? 'code' : codeElementSelector);
-                
-                if (!codeElement) {
-                    console.error("Code element not found for copy button:", button);
-                    return;
-                }
-
-                const textToCopy = codeElement.innerText;
-                
+        function setupCopyButtonBehavior(buttonEl, codeContentEl) {
+            buttonEl.addEventListener('click', () => {
+                const textToCopy = codeContentEl.innerText;
                 const textArea = document.createElement('textarea');
                 textArea.value = textToCopy;
                 document.body.appendChild(textArea);
                 textArea.select();
                 try {
                     document.execCommand('copy');
-                    button.innerText = 'Скопировано!';
+                    buttonEl.innerText = 'Скопировано!';
                     setTimeout(() => {
-                        button.innerText = 'Копировать';
+                        buttonEl.innerText = 'Копировать';
                     }, 2000);
                 } catch (err) {
                     console.error('Ошибка копирования:', err);
-                    button.innerText = 'Ошибка';
+                    buttonEl.innerText = 'Ошибка';
                      setTimeout(() => {
-                        button.innerText = 'Копировать';
+                        buttonEl.innerText = 'Копировать';
                     }, 2000);
                 }
                 document.body.removeChild(textArea);
             });
         }
 
-        copyButtons.forEach(button => {
-             setupCopyButton(button, 'code');
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            const preElement = button.closest('pre');
+            if (preElement) {
+                const codeElement = preElement.querySelector('code');
+                if (codeElement) {
+                    setupCopyButtonBehavior(button, codeElement);
+                }
+            }
         });
         
-        const copyRuleOutputButton = document.getElementById('copyRuleOutput');
-        if (copyRuleOutputButton) {
-            setupCopyButton(copyRuleOutputButton, '#ruleOutputMdc', true);
-        }
-
-        const copyPromptOutputButton = document.getElementById('copyPromptOutput');
-        if (copyPromptOutputButton) {
-            setupCopyButton(copyPromptOutputButton, '#promptOutputText', true);
-        }
-
-
         function handleHashChange() {
             const hash = window.location.hash.substring(1);
             if (hash) {
@@ -942,14 +1525,17 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
                     return;
                 }
             }
+            // Default to introduction if no valid hash or element not found
             showSection('introduction');
         }
 
         window.addEventListener('hashchange', handleHashChange);
+        // Initial load: set active section based on hash or default to introduction
         handleHashChange();
 
+
         // Gemini API Integration
-        const apiKey = ""; // API Key will be injected by the environment
+        const apiKey = ""; // API Key will be injected by the environment if run in a suitable one
 
         async function callGeminiApi(promptText, outputElement, loaderElement, errorElement, buttonElement, outputContainer) {
             loaderElement.style.display = 'block';
@@ -960,7 +1546,14 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
             try {
                 let chatHistory = [{ role: "user", parts: [{ text: promptText }] }];
                 const payload = { contents: chatHistory };
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                // Ensure apiKey is defined or handled if this code is run outside an injecting environment
+                const currentApiKey = typeof apiKey !== 'undefined' && apiKey !== "" ? apiKey : (typeof __GEMINI_API_KEY__ !== 'undefined' ? __GEMINI_API_KEY__ : "");
+
+                if (!currentApiKey && !window.location.href.includes('localhost')) { // Basic check if not in a dev env that might provide key
+                     throw new Error("API Key is not available. This feature requires a valid API key to function.");
+                }
+                
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${currentApiKey}`;
                 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -970,7 +1563,16 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
 
                 if (!response.ok) {
                     const errorData = await response.json();
-                    throw new Error(errorData.error ? errorData.error.message : `API request failed with status ${response.status}`);
+                     let errorMessage = `API request failed with status ${response.status}`;
+                    if (errorData.error && errorData.error.message) {
+                        errorMessage += `: ${errorData.error.message}`;
+                    }
+                    if (response.status === 400 && errorData.error.message.toLowerCase().includes("api key not valid")) {
+                        errorMessage = "Ключ API недействителен или отсутствует. Проверьте конфигурацию ключа. Эта функция не будет работать без действительного ключа.";
+                    } else if (response.status === 403) {
+                         errorMessage = "Доступ запрещен. Возможно, API ключ не имеет необходимых разрешений или сервис недоступен.";
+                    }
+                    throw new Error(errorMessage);
                 }
 
                 const result = await response.json();
@@ -981,13 +1583,15 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
                     const text = result.candidates[0].content.parts[0].text;
                     outputElement.textContent = text;
                     outputContainer.style.display = 'block';
-                } else {
-                    throw new Error("Ответ API не содержит ожидаемых данных.");
+                } else if (result.promptFeedback && result.promptFeedback.blockReason) {
+                     throw new Error(`Запрос заблокирован по причине: ${result.promptFeedback.blockReason}. Детали: ${JSON.stringify(result.promptFeedback.safetyRatings)}`);
+                }else {
+                    throw new Error("Ответ API не содержит ожидаемых данных или был пустым.");
                 }
 
             } catch (error) {
                 console.error("Ошибка при вызове Gemini API:", error);
-                errorElement.textContent = `Произошла ошибка: ${error.message}. Пожалуйста, попробуйте еще раз.`;
+                errorElement.textContent = `Произошла ошибка: ${error.message}. Пожалуйста, попробуйте еще раз или проверьте консоль для деталей.`;
                 errorElement.style.display = 'block';
             } finally {
                 loaderElement.style.display = 'none';
@@ -995,7 +1599,6 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
             }
         }
 
-        // Rule Generator
         const generateRuleButton = document.getElementById('generateRuleButton');
         const ruleInput = document.getElementById('ruleInput');
         const ruleOutputMdc = document.getElementById('ruleOutputMdc');
@@ -1011,7 +1614,6 @@ node_modules/</code><button class="copy-btn">Копировать</button></pre>
                     ruleError.style.display = 'block';
                     return;
                 }
-
                 const geminiPrompt = `Сгенерируй содержимое файла Cursor Rule (.mdc) для следующего правила, предназначенного для PHP/Laravel проекта: "${userInput}".
 Правило должно быть в формате MDC, включая YAML frontmatter (с полями description, globs (если применимо, например, для "*.php" или "app/Http/Controllers/**/*.php"), alwaysApply (true/false)) и тело правила в Markdown.
 Пример YAML frontmatter:
@@ -1026,13 +1628,11 @@ alwaysApply: false # true для Always правил
 
 Убедись, что YAML frontmatter корректен. Если globs не очевидны из описания, можно их опустить или предложить общий вариант.
 Описание (description) должно быть кратким и понятным для AI агента.
-Тело правила должно быть четким и действенным.`;
-
+Тело правила должно быть четким и действенным. Ответ должен содержать только код правила в формате MDC, без дополнительных объяснений или введений.`;
                 await callGeminiApi(geminiPrompt, ruleOutputMdc, ruleLoader, ruleError, generateRuleButton, ruleOutputContainer);
             });
         }
 
-        // Prompt Generator
         const generatePromptButton = document.getElementById('generatePromptButton');
         const promptTaskInput = document.getElementById('promptTaskInput');
         const promptOutputText = document.getElementById('promptOutputText');
@@ -1051,27 +1651,26 @@ alwaysApply: false # true для Always правил
                 const geminiPrompt = `Помоги мне создать эффективный промпт для AI-ассистента в Cursor IDE (похожего на GPT-4 или Claude) для выполнения следующей задачи в PHP/Laravel проекте: "${userInput}".
 Промпт должен быть:
 1.  Конкретным и ясным.
-2.  Указывать на необходимость следования конвенциям Laravel.
+2.  Указывать на необходимость следования конвенциям Laravel (например, PSR-12, структура проекта, использование Eloquent).
 3.  Предлагать AI задавать уточняющие вопросы, если что-то неясно.
-4.  Рекомендовать разбивать задачу на подзадачи, если она сложная.
-5.  Напоминать о предоставлении контекста (например, какие файлы через @Files или @Folders могут быть полезны).
-6.  Если задача включает генерацию кода, указать на важность PHPDoc, типизации и чистоты кода.
+4.  Рекомендовать разбивать задачу на подзадачи, если она сложная, и, возможно, сначала предложить план.
+5.  Напоминать о предоставлении необходимого контекста (например, какие файлы через @Files или @Folders могут быть полезны, или какие @CursorRules применить).
+6.  Если задача включает генерацию кода, указать на важность PHPDoc, строгой типизации (если применимо для версии PHP), чистоты кода и написания тестов (например, PestPHP).
 7.  Промпт должен быть сформулирован так, как будто я обращаюсь к AI в Cursor.
 
 Пример структуры промпта:
-"Привет, Cursor! Пожалуйста, помоги мне с [основная задача].
-Детали:
-- [Деталь 1]
-- [Деталь 2]
-Контекст, который может быть полезен: @Files [список файлов], @Folders [список папок], @Docs [документация].
-Пожалуйста, следуй лучшим практикам Laravel. Если что-то неясно, задавай вопросы. Если задача большая, предложи план выполнения.
-Ожидаемый результат: [описание результата]."
+"Привет, Cursor! Пожалуйста, помоги мне с [основная задача, например, созданием CRUD для модели Product].
+Детали задачи:
+- [Деталь 1, например, модель Product должна иметь поля name, description, price]
+- [Деталь 2, например, используй ProductService для бизнес-логики и FormRequests для валидации]
+Контекст, который может быть полезен: @Files app/Models/Product.php, app/Services/ProductService.php; @CursorRules eloquent-model-guidelines.mdc, controller-guidelines.mdc.
+Пожалуйста, следуй лучшим практикам Laravel 11 и PHP 8.2. Если что-то неясно, задавай вопросы. Если задача большая, предложи, пожалуйста, сначала план выполнения.
+Ожидаемый результат: [описание ожидаемого результата, например, полностью рабочий ProductController с методами index, store, show, update, destroy, соответствующий ProductService и тесты PestPHP для контроллера]."
 
-Сгенерируй только текст самого промпта.`;
+Сгенерируй только текст самого промпта, без дополнительных объяснений или введений.`;
                 await callGeminiApi(geminiPrompt, promptOutputText, promptLoader, promptError, generatePromptButton, promptOutputContainer);
             });
         }
-
     </script>
 </body>
 </html>
